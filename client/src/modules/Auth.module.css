@@ -1,0 +1,60 @@
+.auth__input {
+  width: 100%;
+  border: 1px solid #74808c;
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding: 16px 10px;
+  color: #949397;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 300;
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
+.auth__input::placeholder {
+  font-family: inherit;
+  font-weight: 300;
+  opacity: 0.6;
+  font-size: inherit;
+}
+.authBottom {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 25px;
+  text-align: center;
+}
+.auth__text {
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 16px;
+
+  text-align: center;
+  text-decoration-line: underline;
+
+  color: #949397;
+}
+.auth__btn {
+  background: #0377a6;
+  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112),
+    inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
+  backdrop-filter: blur(129.511px);
+  border-radius: 60px;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  color: #fefdfc;
+  padding: 12px 0;
+  margin-top: 20px;
+  transition: all 0.2s linear;
+  border: 3px solid #0377a6;
+}
+.auth__btn:hover {
+  background: #fff;
+  box-shadow: none;
+  color: #0377a6;
+}

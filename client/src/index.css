@@ -1,0 +1,19 @@
+@import url('./fonts/stylesheet.css');
+
+html,
+body {
+  font-family: 'Muller';
+  font-size: 16px;
+}
+body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+.container {
+  width: 100%;
+  padding: 0 25px;
+  margin: 0 auto;
+}
