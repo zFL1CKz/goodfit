@@ -20,7 +20,7 @@
   opacity: 0;
   transition: all 0.2s linear;
 }
-.activity__img.active {
+.activity__item.active .activity__img {
   opacity: 1;
 }
 .activity__desc {
@@ -32,6 +32,6 @@
 
   transition: all 0.2s linear;
 }
-.activity__desc.active {
+.activity__item.active .activity__desc {
   color: #0377a6;
 }
