@@ -3,7 +3,7 @@ body header {
   height: 90px;
   background: url('../../img/header-bg.png') center no-repeat;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
   padding-bottom: 15px;
   margin-bottom: 40px;
