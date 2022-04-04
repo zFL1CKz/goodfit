@@ -38,7 +38,8 @@
 }
 .auth__btn {
   background: #0377a6;
-  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112), inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
+  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112),
+    inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
   backdrop-filter: blur(129.511px);
   border-radius: 60px;
   font-family: inherit;
@@ -154,6 +155,7 @@
   margin-bottom: 60px;
 }
 .auth__subtitle {
+  padding: 0 30px;
   font-family: inherit;
   font-weight: 300;
   font-size: 16px;
@@ -161,4 +163,34 @@
   text-align: center;
   margin-bottom: 40px;
   color: #949397;
+}
+.absolute {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+.auth__circles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.auth__circle {
+  width: 13px;
+  height: 13px;
+  background: #949397;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+  transition: all 0.2s linear;
+  margin-right: 15px;
+  border-radius: 50%;
+}
+.auth__circle.active {
+  opacity: 1;
+  background: #0377a6;
+}
+.auth__circle:last-child {
+  margin-right: 0;
 }

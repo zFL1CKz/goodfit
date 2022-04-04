@@ -19,7 +19,8 @@ export const ActivityCard = ({ item }) => {
   }
   function firstActive() {
     setTimeout(() => {
-      document.querySelector('.activity__item').classList.add('active')
+      const item = document.querySelector('.activity__item')
+      item !== null && item.classList.add('active')
     }, 0)
   }
   firstActive()

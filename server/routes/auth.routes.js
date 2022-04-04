@@ -8,7 +8,7 @@ const config = require('config')
 const router = Router()
 
 router.post(
-  '/register',
+  '/checkregister',
   [
     check('email', 'Некорректный email').isEmail(),
     check('password', 'Пароль должен быть больше 6-ти символов').isLength({
@@ -24,7 +24,7 @@ router.post(
           .status(400)
           .json({ errors: errors.array(), message: 'Некорретные данные' })
       }
-      const { email, password } = req.body
+      const { email } = req.body
 
       const candidate = await User.findOne({ email })
       if (candidate) {
@@ -32,7 +32,19 @@ router.post(
           .status(400)
           .json({ message: 'Такой пользователь уже существует' })
       }
+      res.status(201).json({ message: 'Проверка прошла успешно' })
+    } catch (error) {
+      res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
+  }
+)
 
+router.post(
+  '/register',
+
+  async (req, res) => {
+    try {
+      const { email, password } = req.body
       const hashPass = await bcrypt.hash(password, 12)
       const user = new User({
         email: email,
