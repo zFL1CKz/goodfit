@@ -1,0 +1,9 @@
+.error__text {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: red;
+  margin-bottom: -15px;
+}
