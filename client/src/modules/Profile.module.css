@@ -1,0 +1,97 @@
+.profile__group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.label__span {
+  text-align: right;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #0377a6;
+}
+.profile__title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  color: #707070;
+}
+.profile__subtitle {
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 16px;
+  margin-top: 10px;
+  color: #949397;
+}
+.profile__labelCheck {
+  margin-right: 50px;
+}
+.profile__inputCheck {
+  position: relative;
+  min-width: 53px;
+  height: 34.74px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #74808c;
+  border-radius: 17.368px;
+  transition: all 0.2s linear;
+}
+.profile__inputCheck:checked {
+  background: #0377a6;
+}
+.profile__inputCheck::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 3px;
+  width: 28.42px;
+  height: 28.42px;
+  background: #fff;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+}
+.profile__inputCheck:checked::before {
+  left: 22px;
+}
+.profile__input {
+  text-align: right;
+  width: 150px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #0377a6;
+  height: 18px;
+}
+.profile__input::placeholder {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #0377a6;
+}
+.gender__wrapper {
+  display: flex;
+  align-items: center;
+  border: 2px solid #0377a6;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.gender__item {
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  background: #fff;
+  color: #0377a6;
+  text-align: center;
+  padding: 3px 15px;
+  transition: all 0.2s linear;
+}
+.gender__item.active {
+  color: #fbf9f9;
+  background: #0377a6;
+}
