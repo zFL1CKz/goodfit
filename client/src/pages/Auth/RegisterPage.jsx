@@ -16,16 +16,18 @@ import screenImg5 from '../../img/startScreens/5.jpg'
 
 export const RegisterPage = () => {
   const { token } = useContext(AuthContext)
-  const { request } = useHttp()
+  const { request, error, clearError } = useHttp()
+  const auth = useContext(AuthContext)
 
-  // const [modalActive, setModalActive] = useState(false)
-  const [error, setError] = useState('')
+  const [validError, setValidError] = useState('')
   const [isReady, setIsReady] = useState(true)
   const [isChecked, setIsChecked] = useState(true)
-  const [screen, setScreen] = useState(7)
-  const [genderActive, setGenderActive] = useState(true)
+  const [screen, setScreen] = useState(1)
+  const [genderIsMale, setGenderIsMale] = useState(true)
   const [validForm, setValidForm] = useState(false)
   const [activities, setActivities] = useState([])
+  const [currentActivity, setCurrentActivity] = useState()
+  const [genders, setGenders] = useState([])
   const [resultDate, setResultDate] = useState(
     new Date(2002, 10, 18).toLocaleDateString('en-US', {
       month: 'short',
@@ -40,11 +42,9 @@ export const RegisterPage = () => {
   })
 
   const [info, setInfo] = useState({
-    isChecked,
     birth: '',
     height: '',
     weight: '',
-    // gender,
   })
 
   const changeHandler = (e) => {
@@ -53,12 +53,27 @@ export const RegisterPage = () => {
   const infoHandler = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value })
   }
-  function checkForm() {
-    if (form.password.length >= 6 && form.password === form.confirmPassword) {
-      setValidForm(true)
-      setScreen(5)
-    } else console.log('validError')
+  async function checkForm() {
+    let regexp = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i
+    if (!regexp.test(form.email)) setValidError('Введите корректный email!')
+    else if (form.password.length < 6)
+      setValidError('Пароль должен быть больше 6-ти символов!')
+    else if (form.password !== form.confirmPassword)
+      setValidError('Пароли не совпадают!')
+    else {
+      setValidError('')
+      try {
+        const data = await request('/api/auth/checkregister', 'POST', {
+          ...form,
+        })
+        if (data.message === 'Проверка прошла успешно') setScreen(5)
+      } catch (error) {}
+    }
   }
+
+  useEffect(() => {
+    setValidError(error)
+  }, [error, clearError])
 
   const setNewScreen = (screen) => {
     setScreen(screen)
@@ -82,6 +97,16 @@ export const RegisterPage = () => {
     if (screen === 6) getActivity()
   }, [screen, getActivity])
 
+  function activityHandler() {
+    let arr = document.querySelectorAll('.activity__item')
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].classList.contains('active')) {
+        setCurrentActivity(activities[i])
+        break
+      }
+    }
+  }
+
   useEffect(() => {
     if (info.birth.indexOf('_') === -1 && info.birth.split('').length === 10) {
       let date = info.birth.split('.')
@@ -99,6 +124,55 @@ export const RegisterPage = () => {
       }
     }
   }, [info.birth])
+
+  const getGenders = useCallback(async () => {
+    try {
+      await request('/api/getgenders', 'GET', null).then((res) => {
+        setGenders(res)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }, [request, genders.length])
+
+  useEffect(() => {
+    getGenders()
+  }, [getGenders])
+
+  function checkGender() {
+    if (genderIsMale) return genders[0]._id
+    else return genders[1]._id
+  }
+
+  async function validInfo() {
+    if (info.birth === '') setValidError('Введите свою дату рождения!')
+    else if (info.height === '')
+      setValidError('Поле "Рост" не может быть пустым!')
+    else if (info.weight === '')
+      setValidError('Поле "Вес" не может быть пустым!')
+    else {
+      setValidError('')
+      let date = info.birth.split('.')
+      let reqObject = {
+        email: form.email,
+        password: form.password,
+        activity: currentActivity._id,
+        caloriesCalc: isChecked,
+        birth: new Date(`${date[1]}.${date[0]}.${date[2]}`),
+        height: info.height,
+        weight: info.weight,
+        gender: checkGender(),
+      }
+      try {
+        const data = await request('/api/auth/register', 'POST', {
+          ...reqObject,
+        })
+        auth.login(data.token, data.userId)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 
   if (!isReady) {
     return <Loader />
@@ -165,6 +239,7 @@ export const RegisterPage = () => {
                     onClick={() => checkForm()}>
                     Регистрация
                   </button>
+                  <div className={errorModule.error__text}>{validError}</div>
                 </div>
               </div>
             </div>
@@ -218,7 +293,10 @@ export const RegisterPage = () => {
                 <div className='container'>
                   <div
                     className={authModule.auth__btn}
-                    onClick={() => setScreen(7)}>
+                    onClick={() => {
+                      activityHandler()
+                      setScreen(7)
+                    }}>
                     Далее
                   </div>
                 </div>
@@ -259,7 +337,7 @@ export const RegisterPage = () => {
                   id='calcCheck'
                   className={profileModule.profile__inputCheck}
                   checked={isChecked}
-                  onClick={() => setIsChecked(!isChecked)}
+                  onChange={() => setIsChecked(!isChecked)}
                 />
               </div>
 
@@ -330,16 +408,16 @@ export const RegisterPage = () => {
                 <div className={profileModule.gender__wrapper}>
                   <div
                     className={`${profileModule.gender__item} ${
-                      genderActive && profileModule.active
+                      genderIsMale && profileModule.active
                     }`}
-                    onClick={() => setGenderActive(true)}>
+                    onClick={() => setGenderIsMale(true)}>
                     Муж.
                   </div>
                   <div
                     className={`${profileModule.gender__item} ${
-                      !genderActive && profileModule.active
+                      !genderIsMale && profileModule.active
                     }`}
-                    onClick={() => setGenderActive(false)}>
+                    onClick={() => setGenderIsMale(false)}>
                     Жен.
                   </div>
                 </div>
@@ -347,11 +425,9 @@ export const RegisterPage = () => {
 
               <div className={authModule.absolute}>
                 <div className='container'>
-                  <div className={errorModule.error__text}>{error}</div>
-                  <div
-                    className={authModule.auth__btn}
-                    onClick={() => setScreen(7)}>
-                    Далее
+                  <div className={errorModule.error__text}>{validError}</div>
+                  <div className={authModule.auth__btn} onClick={validInfo}>
+                    Старт
                   </div>
                 </div>
                 <div className={authModule.auth__circles}>

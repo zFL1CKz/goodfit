@@ -44,11 +44,30 @@ router.post(
 
   async (req, res) => {
     try {
-      const { email, password } = req.body
+      const {
+        email,
+        password,
+        activity,
+        caloriesCalc,
+        birth,
+        height,
+        weight,
+        gender,
+      } = req.body
+
       const hashPass = await bcrypt.hash(password, 12)
+
       const user = new User({
         email: email,
         password: hashPass,
+        activity: activity,
+        info: {
+          caloriesCalc: caloriesCalc,
+          birth: birth,
+          height: height,
+          weight: weight,
+          gender: gender,
+        },
       })
 
       await user.save()
