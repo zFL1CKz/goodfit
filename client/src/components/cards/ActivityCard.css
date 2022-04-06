@@ -18,7 +18,7 @@
 }
 .activity__img {
   opacity: 0;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 .activity__item.active .activity__img {
   opacity: 1;
@@ -30,7 +30,7 @@
   color: #949397;
   padding-right: 40px;
 
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 .activity__item.active .activity__desc {
   color: #0377a6;

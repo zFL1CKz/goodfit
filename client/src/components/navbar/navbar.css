@@ -1,0 +1,85 @@
+.nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-radius: 30px 30px 0px 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+.nav__wrapper {
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 30px 30px 0px 0px;
+  position: relative;
+}
+.nav__item {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  z-index: 2;
+}
+.nav__item .nav__img {
+  width: 100%;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.3s linear;
+}
+.nav__text {
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 9px;
+  color: #949397;
+  margin-top: 10px;
+  transition: color 0.3s linear;
+}
+.nav--bg {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  background: #0377a6;
+  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112),
+    inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
+  backdrop-filter: blur(129.511px);
+  transition: left 0.3s linear;
+}
+.nav__item:nth-child(1) .nav__img {
+  background-image: url('../../img/nav/trainings.svg');
+}
+.nav__item:nth-child(2) .nav__img {
+  background-image: url('../../img/nav/goals.svg');
+}
+.nav__item:nth-child(3) .nav__img {
+  background-image: url('../../img/nav/food.svg');
+}
+.nav__item:nth-child(4) .nav__img {
+  background-image: url('../../img/nav/profile.svg');
+}
+.nav__item:nth-child(1):hover .nav__img,
+.nav__item:nth-child(1).active .nav__img {
+  background-image: url('../../img/nav/fill--trainings.svg');
+  filter: brightness(0) invert(1);
+}
+.nav__item:nth-child(2):hover .nav__img,
+.nav__item:nth-child(2).active .nav__img {
+  background-image: url('../../img/nav/fill--goals.svg');
+  filter: brightness(0) invert(1);
+}
+.nav__item:nth-child(3):hover .nav__img,
+.nav__item:nth-child(3).active .nav__img {
+  background-image: url('../../img/nav/fill--food.svg');
+  filter: brightness(0) invert(1);
+}
+.nav__item:nth-child(4):hover .nav__img,
+.nav__item:nth-child(4).active .nav__img {
+  background-image: url('../../img/nav/fill--profile.svg');
+  filter: brightness(0) invert(1);
+}
+.nav__item.active .nav__text {
+  color: #fff;
+}

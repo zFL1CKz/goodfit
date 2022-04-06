@@ -38,7 +38,7 @@
   appearance: none;
   background: #74808c;
   border-radius: 17.368px;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 .profile__inputCheck:checked {
   background: #0377a6;
@@ -53,7 +53,7 @@
   height: 28.42px;
   background: #fff;
   border-radius: 50%;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 .profile__inputCheck:checked::before {
   left: 22px;
@@ -89,7 +89,7 @@
   color: #0377a6;
   text-align: center;
   padding: 3px 15px;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 .gender__item.active {
   color: #fbf9f9;

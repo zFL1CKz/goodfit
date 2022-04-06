@@ -55,7 +55,7 @@
   border-radius: 50%;
   margin-bottom: 20px;
   margin-right: 15px;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 .screen__circle.active {
   opacity: 1;
@@ -74,7 +74,7 @@
   padding: 12px 0;
   border: 3px solid #fff;
   border-radius: 60px;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 .screen__btn:hover {
   color: #fff;
