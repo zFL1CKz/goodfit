@@ -154,6 +154,9 @@
 .auth__title.mb60 {
   margin-bottom: 60px;
 }
+.auth__title.mb40 {
+  margin-bottom: 40px;
+}
 .auth__subtitle {
   padding: 0 30px;
   font-family: inherit;
@@ -165,7 +168,7 @@
   color: #949397;
 }
 .absolute {
-  position: absolute;
+  position: fixed;
   bottom: 25px;
   left: 50%;
   transform: translateX(-50%);

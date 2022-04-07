@@ -284,9 +284,11 @@ export const RegisterPage = () => {
                 Выберите степень физической активности
               </div>
               <div className={authModule.auth__subtitle}></div>
-              <div className='activity'>
+              <div>
                 {activities.map((item, index) => {
-                  return <ActivityCard key={index} item={item} />
+                  return (
+                    <ActivityCard key={index} item={item} active={item.name} />
+                  )
                 })}
               </div>
               <div className={authModule.absolute}>

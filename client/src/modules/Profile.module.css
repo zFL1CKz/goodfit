@@ -95,3 +95,9 @@
   color: #fbf9f9;
   background: #0377a6;
 }
+.activity {
+  display: none;
+}
+.activity.active {
+  display: block;
+}
