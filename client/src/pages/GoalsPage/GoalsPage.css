@@ -1,0 +1,95 @@
+.goals__item {
+  background: #0377a6;
+  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112),
+    inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
+  backdrop-filter: blur(129.511px);
+  border-bottom: 1px solid #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+
+  font-family: inherit;
+  font-weight: 300;
+  font-weight: 300;
+  font-size: 16px;
+  color: #fff;
+  transition: all 0.3s linear;
+}
+.goals__item.completed {
+  opacity: 0.7;
+}
+.goals__text {
+  width: 100%;
+  overflow-y: scroll;
+}
+.goals__group {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.goals__group div:first-child {
+  margin-right: 15px;
+}
+.goals__new input {
+  font-family: inherit;
+  font-weight: 300;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  background: 0;
+  width: 100%;
+  padding-right: 20px;
+}
+.goals__new input::placeholder {
+  font-family: inherit;
+  font-weight: 300;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+}
+.goals__new {
+  font-family: inherit;
+  font-weight: 300;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 15px 15px 0px 0px;
+}
+.goals__img {
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background 0.3s linear;
+}
+.goals__img:hover {
+  background-color: #fff;
+}
+.goals--add {
+  background-image: url('../../img/icons/goals/add.svg');
+}
+.goals--add:hover {
+  background-image: url('../../img/icons/goals/add--blue.svg');
+}
+.goals--check {
+  background-image: url('../../img/icons/goals/check.svg');
+}
+.goals--check:hover {
+  background-image: url('../../img/icons/goals/check--blue.svg');
+}
+.goals--cross {
+  background-image: url('../../img/icons/goals/add.svg');
+  transform: rotate(45deg);
+}
+.goals--cross:hover {
+  background-image: url('../../img/icons/goals/add--blue.svg');
+  transform: rotate(45deg);
+}

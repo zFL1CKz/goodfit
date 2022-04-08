@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { TopCircle } from '../../components/circles/topCircle'
 import authModule from '../../modules/Auth.module.css'
+import errorModule from '../../modules/Error.module.css'
 import { AuthContext } from '../../context/AuthContext'
 import { useHttp } from '../../hooks/http.hook'
 
@@ -12,9 +13,15 @@ export const LoginPage = () => {
     email: '',
     password: '',
   })
+  const [validError, setValidError] = useState('')
+
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
+
+  useEffect(() => {
+    setValidError(error)
+  }, [error, clearError])
 
   async function loginHandler() {
     try {
@@ -48,6 +55,7 @@ export const LoginPage = () => {
             <button className={authModule.auth__btn} onClick={loginHandler}>
               Вход
             </button>
+            <div className={errorModule.error__text}>{validError}</div>
           </div>
         </div>
       </div>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { TopCircle } from '../../components/circles/topCircle'
 import { NavBar } from '../../components/navbar/navbar'
+import { FoodPage } from '../FoodPage/FoodPage'
 import { GoalsPage } from '../GoalsPage/GoalsPage'
 import { ProfilePage } from '../ProfilePage/ProfilePage'
+import { TrainingPage } from '../TrainigsPage/TrainingsPage'
 
 export const MenuPage = () => {
   const [currentScreen, setCurrentScreen] = useState(1)
@@ -12,10 +14,10 @@ export const MenuPage = () => {
 
   return (
     <div>
-      {currentScreen === 4 && (
+      {currentScreen === 1 && (
         <div className='profile'>
-          <TopCircle text='Профиль' />
-          <ProfilePage />
+          <TopCircle text='Тренировки' />
+          <TrainingPage />
         </div>
       )}
 
@@ -23,6 +25,20 @@ export const MenuPage = () => {
         <div className='profile'>
           <TopCircle text='Цели' />
           <GoalsPage />
+        </div>
+      )}
+
+      {currentScreen === 3 && (
+        <div className='profile'>
+          <TopCircle text='Питание' />
+          <FoodPage />
+        </div>
+      )}
+
+      {currentScreen === 4 && (
+        <div className='profile'>
+          <TopCircle text='Профиль' />
+          <ProfilePage />
         </div>
       )}
 
