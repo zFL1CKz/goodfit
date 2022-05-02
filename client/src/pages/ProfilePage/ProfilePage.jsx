@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthContext'
 import { useHttp } from '../../hooks/http.hook'
 import { Loader } from '../../components/loader/Loader'
 import InputMask from 'react-input-mask'
+import dayjs from 'dayjs'
 
 import authModule from '../../modules/Auth.module.css'
 import profileModule from '../../modules/Profile.module.css'
@@ -81,7 +82,14 @@ export const ProfilePage = () => {
   }, [token, request, activities.length, userInfo.length, genders.length])
 
   const validInfo = useCallback(async () => {
-    if (info.birth === '') setValidError('Некорректная дата рождения')
+    let date = info.birth.split('.')
+    if (
+      info.birth === '' ||
+      Number(date[2]) >= new Date().getFullYear() ||
+      Number(date[2] < new Date().getFullYear() - 100) ||
+      !dayjs(new Date(`${date[1]}.${date[0]}.${date[2]}`)).isValid()
+    )
+      setValidError('Некорректная дата рождения')
     else if (info.height === '' || info.height == 0)
       setValidError('Поле "Рост" не может быть пустым!')
     else if (info.weight === '' || info.weight == 0)
@@ -89,7 +97,6 @@ export const ProfilePage = () => {
     else {
       setIsReady(false)
       setValidError('')
-      let date = info.birth.split('.')
       let arr = document.querySelectorAll('.activity__item')
       for (let i = 0; i < arr.length; i++) {
         if (arr[i].classList.contains('active')) {

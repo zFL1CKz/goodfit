@@ -19,7 +19,6 @@ export const GoalsPage = () => {
         Authorization: `Bearer ${token}`,
       }).then((res) => {
         setGoals(res)
-        // console.log(goals)
       })
     } catch (error) {
       console.log(error)
