@@ -1,0 +1,46 @@
+.training-info__title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 24px;
+
+  text-align: center;
+  color: #74808c;
+  margin-bottom: 15px;
+}
+.training-info__focus span {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0377a6;
+}
+.training-info__focus ul {
+  font-weight: 300;
+  font-size: 16px;
+  color: #949397;
+}
+.training-info__focus ul li:before {
+  content: '—';
+  margin-right: 5px;
+}
+
+.training-info__btn {
+  margin-top: 40px;
+  background: #0377a6;
+  border-radius: 60px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 30px;
+
+  text-align: center;
+
+  color: #fff;
+  padding: 12px 0;
+  width: 100%;
+  border: 3px solid #0377a6;
+  transition: all 0.3s linear;
+}
+.training-info__btn:hover {
+  color: #0377a6;
+  background: transparent;
+}

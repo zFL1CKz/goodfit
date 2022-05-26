@@ -1,0 +1,116 @@
+.training-nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+  margin-bottom: 10px;
+}
+.training-nav__item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0377a6;
+  padding: 12px 0;
+  position: relative;
+  z-index: 2;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 300;
+  border-top: 1px solid #0377a6;
+  border-bottom: 1px solid #0377a6;
+  transition: color 0.3s linear;
+}
+.training-nav__item.active {
+  color: #fff;
+}
+.training-nav--bg {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background: #0377a6;
+  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112),
+    inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
+  transition: left 0.3s linear;
+}
+.slider {
+  padding: 0 0 0 20px;
+}
+.slider__item {
+  position: relative;
+  border: 1px solid #0377a6;
+  background: transparent;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #0377a6;
+  font-family: inherit;
+  transition: background 0.3s linear;
+}
+.slider__item.active,
+.slider__item.check {
+  background: #0377a6;
+  color: #fff;
+}
+.slider__item-day {
+  font-weight: 300;
+  font-size: 9px;
+  margin-bottom: 5px;
+}
+.slider__item-part {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.slider__item .slider__item-img {
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  transform: translateY(-50%);
+}
+.slider__item.block .slider__item-img {
+  background-image: url('../../img/icons/training--block.svg');
+}
+.slider__item.unblock .slider__item-img {
+  background-image: url('../../img/icons/training--unblock.svg');
+}
+.slider__item.check .slider__item-img {
+  background-image: url('../../img/icons/training--check.svg');
+  background-size: cover;
+  width: 22px;
+  height: 22px;
+}
+.slick-list {
+  overflow: hidden;
+}
+.slick-track {
+  display: flex;
+}
+.slick-slide {
+  margin-right: 5px;
+}
+.training__btn--fiveweeks {
+  background: #0377a6;
+  border-radius: 60px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+  padding: 12px 0;
+  width: 85%;
+  display: block;
+  margin: 30px auto 0;
+}

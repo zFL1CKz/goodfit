@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './navbar.css'
 
 export const NavBar = ({ checkScreen }) => {
-  const [currentScreen, setSurrentScreen] = useState(1)
+  const [currentScreen, setCurrentScreen] = useState(1)
 
   function setNavActive(screen) {
     let navBg = document.querySelector('.nav--bg')
@@ -10,7 +10,7 @@ export const NavBar = ({ checkScreen }) => {
     else if (screen === 2) navBg.style.left = '25%'
     else if (screen === 3) navBg.style.left = '50%'
     else navBg.style.left = '75%'
-    setSurrentScreen(screen)
+    setCurrentScreen(screen)
     checkScreen(screen)
   }
 

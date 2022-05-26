@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { RegisterPage } from './pages/Auth/RegisterPage.jsx'
 import { LoginPage } from './pages/Auth/LoginPage.jsx'
 import { MenuPage } from './pages/MenuPage/MenuPage.jsx'
-import { ProfilePage } from './pages/ProfilePage/ProfilePage.jsx'
 
 export const useRoutes = (isAuth) => {
   if (isAuth) {

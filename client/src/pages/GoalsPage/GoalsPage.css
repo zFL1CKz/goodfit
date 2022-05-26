@@ -19,6 +19,7 @@
 }
 .goals__item.completed {
   opacity: 0.7;
+  text-decoration: line-through;
 }
 .goals__text {
   width: 100%;
@@ -49,6 +50,9 @@
   font-weight: 700;
   font-size: 16px;
   color: #fff;
+}
+.goals__new input:focus::placeholder {
+  font-size: 0;
 }
 .goals__new {
   font-family: inherit;
