@@ -10,6 +10,7 @@ import './TrainingsPage.css'
 
 export const TrainingPage = () => {
   const [info, setInfo] = useState(null)
+  const [start, setStart] = useState(false)
 
   return (
     <>
@@ -17,7 +18,15 @@ export const TrainingPage = () => {
         <>
           <div
             className='training-item'
-            onClick={(e) => setInfo(e.currentTarget)}>
+            onClick={(e) => {
+              if (JSON.parse(localStorage.getItem('training'))?.name === '5 недель к эстетике') {
+                setStart(true)
+                setInfo(e.currentTarget)
+              } else {
+                setStart(false)
+                setInfo(e.currentTarget)
+              }
+            }}>
             <div className='training-item__title'>5 недель к эстетике</div>
             <div className='training-item__subtitle'>
               <span>Сложность:</span>
@@ -29,17 +38,22 @@ export const TrainingPage = () => {
                 <img src={biceps} alt='' />
               </div>
             </div>
-            <div className='training--focus'>
-              Целенаправленная проработка мышечных групп, Развитие выносливости,
-              Создание эстетичной фигуры
-            </div>
+            <div className='training--focus'>Целенаправленная проработка мышечных групп, Развитие выносливости, Создание эстетичной фигуры</div>
             <img src={img1} alt='' className='training--bg' />
             <img src={tap} alt='' className='training--tap' />
           </div>
 
           <div
             className='training-item'
-            onClick={(e) => setInfo(e.currentTarget)}>
+            onClick={(e) => {
+              if (JSON.parse(localStorage.getItem('training'))?.name === 'От 0 до 100') {
+                setStart(true)
+                setInfo(e.currentTarget)
+              } else {
+                setStart(false)
+                setInfo(e.currentTarget)
+              }
+            }}>
             <div className='training-item__title'>От 0 до 100</div>
             <div className='training-item__subtitle'>
               <span>Сложность:</span>
@@ -51,16 +65,22 @@ export const TrainingPage = () => {
                 <img src={biceps} alt='' />
               </div>
             </div>
-            <div className='training--focus'>
-              Развить выносливость, Построить сухую форму, Накачать пресс
-            </div>
+            <div className='training--focus'>Развить выносливость, Построить сухую форму, Накачать пресс</div>
             <img src={img2} alt='' className='training--bg' />
             <img src={tap} alt='' className='training--tap' />
           </div>
 
           <div
             className='training-item'
-            onClick={(e) => setInfo(e.currentTarget)}>
+            onClick={(e) => {
+              if (JSON.parse(localStorage.getItem('training'))?.name === 'Воин спарты 2.0') {
+                setStart(true)
+                setInfo(e.currentTarget)
+              } else {
+                setStart(false)
+                setInfo(e.currentTarget)
+              }
+            }}>
             <div className='training-item__title'>Воин спарты 2.0</div>
             <div className='training-item__subtitle'>
               <span>Сложность:</span>
@@ -78,7 +98,7 @@ export const TrainingPage = () => {
           </div>
         </>
       ) : (
-        <TrainingInfo item={info} setInfo={setInfo} />
+        <TrainingInfo item={info} setInfo={setInfo} started={start} />
       )}
     </>
   )

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
-import { useHistory } from 'react-router-dom'
 import './FiveWeeks.css'
 
-export const FiveWeeks = () => {
+export const From0To100 = () => {
   const [isBlock, setIsBlock] = useState(false)
   const [currentDay, setCurrentDay] = useState(JSON.parse(localStorage.getItem('training')).day)
   const [currentWeek, setCurrentWeek] = useState(JSON.parse(localStorage.getItem('training')).week)
   const titleInfo = document.querySelector('.header__title').innerHTML
-  const history = useHistory()
 
   const sliderSettings = {
     dots: false,
@@ -30,15 +28,14 @@ export const FiveWeeks = () => {
   function setWeekActive(screen) {
     let navBg = document.querySelector('.training-nav--bg')
     if (screen === 1) navBg.style.left = '0'
-    else if (screen === 2) navBg.style.left = '20%'
-    else if (screen === 3) navBg.style.left = '40%'
-    else if (screen === 4) navBg.style.left = '60%'
-    else navBg.style.left = '80%'
+    else if (screen === 2) navBg.style.left = '25%'
+    else if (screen === 3) navBg.style.left = '50%'
+    else navBg.style.left = '75%'
     setCurrentWeek(screen)
   }
 
   function checkCurrentDay() {
-    if (currentDay === 1 || currentDay === 8 || currentDay === 15 || currentDay === 22 || currentDay === 29)
+    if (currentDay === 1 || currentDay === 8 || currentDay === 15 || currentDay === 22)
       return (
         <>
           <iframe
@@ -49,7 +46,6 @@ export const FiveWeeks = () => {
             frameborder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowfullscreen></iframe>
-
           <iframe
             width='100%'
             height='200'
@@ -58,7 +54,6 @@ export const FiveWeeks = () => {
             frameborder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowfullscreen></iframe>
-
           <iframe
             width='100%'
             height='200'
@@ -69,20 +64,7 @@ export const FiveWeeks = () => {
             allowfullscreen></iframe>
         </>
       )
-    else if (currentDay === 2 || currentDay === 9 || currentDay === 16 || currentDay === 23 || currentDay === 30)
-      return (
-        <>
-          <iframe
-            width='100%'
-            height='200'
-            src='https://www.youtube.com/embed/8oIhDdylESE'
-            title='YouTube video player'
-            frameborder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowfullscreen></iframe>
-        </>
-      )
-    else if (currentDay === 3 || currentDay === 10 || currentDay === 17 || currentDay === 24 || currentDay === 31)
+    else if (currentDay === 2 || currentDay === 9 || currentDay === 16 || currentDay === 23)
       return (
         <>
           <iframe
@@ -93,34 +75,6 @@ export const FiveWeeks = () => {
             frameborder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowfullscreen></iframe>
-          <iframe
-            width='100%'
-            height='200'
-            src='https://www.youtube.com/embed/uULz-RmZ4Ok'
-            title='YouTube video player'
-            frameborder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowfullscreen></iframe>
-        </>
-      )
-    else if (currentDay === 4 || currentDay === 11 || currentDay === 18 || currentDay === 25 || currentDay === 32)
-      return (
-        <>
-          <span className='relax'>Этот день нужно провести с пользой и без особой физической нагрузки</span>
-        </>
-      )
-    else if (currentDay === 5 || currentDay === 12 || currentDay === 19 || currentDay === 26 || currentDay === 33)
-      return (
-        <>
-          <iframe
-            width='100%'
-            height='200'
-            src='https://www.youtube.com/embed/rzNBx_B4pQ4'
-            title='YouTube video player'
-            frameborder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowfullscreen></iframe>
-
           <iframe
             width='100%'
             height='200'
@@ -131,9 +85,17 @@ export const FiveWeeks = () => {
             allowfullscreen></iframe>
         </>
       )
-    else if (currentDay === 6 || currentDay === 13 || currentDay === 20 || currentDay === 27 || currentDay === 34)
+    else if (currentDay === 3 || currentDay === 10 || currentDay === 17 || currentDay === 24)
       return (
         <>
+          <iframe
+            width='100%'
+            height='200'
+            src='https://www.youtube.com/embed/rzNBx_B4pQ4'
+            title='YouTube video player'
+            frameborder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowfullscreen></iframe>
           <iframe
             width='100%'
             height='200'
@@ -144,7 +106,28 @@ export const FiveWeeks = () => {
             allowfullscreen></iframe>
         </>
       )
-    else if (currentDay === 7 || currentDay === 14 || currentDay === 21 || currentDay === 28 || currentDay === 35)
+    else if (currentDay === 4 || currentDay === 11 || currentDay === 18 || currentDay === 25)
+      return (
+        <>
+          <iframe
+            width='100%'
+            height='200'
+            src='https://www.youtube.com/embed/rzNBx_B4pQ4'
+            title='YouTube video player'
+            frameborder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowfullscreen></iframe>
+          <iframe
+            width='100%'
+            height='200'
+            src='https://www.youtube.com/embed/XbDbyMJYQc0'
+            title='YouTube video player'
+            frameborder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowfullscreen></iframe>
+        </>
+      )
+    else if (currentDay === 5 || currentDay === 12 || currentDay === 19 || currentDay === 26)
       return (
         <>
           <iframe
@@ -159,6 +142,33 @@ export const FiveWeeks = () => {
             width='100%'
             height='200'
             src='https://www.youtube.com/embed/AvS_GiMJ5Ck'
+            title='YouTube video player'
+            frameborder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowfullscreen></iframe>
+        </>
+      )
+    else if (currentDay === 6 || currentDay === 13 || currentDay === 20 || currentDay === 27)
+      return (
+        <>
+          <span className='relax'>Этот день нужно провести с пользой и без особой физической нагрузки</span>
+        </>
+      )
+    else if (currentDay === 7 || currentDay === 14 || currentDay === 21 || currentDay === 28)
+      return (
+        <>
+          <iframe
+            width='100%'
+            height='200'
+            src='https://www.youtube.com/embed/rzNBx_B4pQ4'
+            title='YouTube video player'
+            frameborder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowfullscreen></iframe>
+          <iframe
+            width='100%'
+            height='200'
+            src='https://www.youtube.com/embed/8oIhDdylESE'
             title='YouTube video player'
             frameborder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
@@ -182,10 +192,7 @@ export const FiveWeeks = () => {
         <div className={currentWeek === 4 ? 'training-nav__item active' : 'training-nav__item'} onClick={() => setWeekActive(4)}>
           4 неделя
         </div>
-        <div className={currentWeek === 5 ? 'training-nav__item active' : 'training-nav__item'} onClick={() => setWeekActive(5)}>
-          5 неделя
-        </div>
-        <div className='training-nav--bg'></div>
+        <div className='training-nav--bg bg--from0to100'></div>
       </nav>
 
       {currentWeek === 1 && (
@@ -203,7 +210,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 2</div>
-                <div className='slider__item-part'>Пресс</div>
+                <div className='slider__item-part'>Ноги</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -212,7 +219,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 3</div>
-                <div className='slider__item-part'>Спина</div>
+                <div className='slider__item-part'>Пресс</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -221,7 +228,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 4</div>
-                <div className='slider__item-part'>Отдых</div>
+                <div className='slider__item-part'>Руки</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -230,7 +237,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 5</div>
-                <div className='slider__item-part'>Ноги</div>
+                <div className='slider__item-part'>Кардио</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -239,7 +246,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 6</div>
-                <div className='slider__item-part'>Пресс</div>
+                <div className='slider__item-part'>Отдых</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -248,7 +255,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 7</div>
-                <div className='slider__item-part'>Кардио</div>
+                <div className='slider__item-part'>Пресс</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -271,7 +278,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 9</div>
-                <div className='slider__item-part'>Пресс</div>
+                <div className='slider__item-part'>Ноги</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -280,7 +287,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 10</div>
-                <div className='slider__item-part'>Спина</div>
+                <div className='slider__item-part'>Пресс</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -289,7 +296,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 11</div>
-                <div className='slider__item-part'>Отдых</div>
+                <div className='slider__item-part'>Руки</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -298,7 +305,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 12</div>
-                <div className='slider__item-part'>Ноги</div>
+                <div className='slider__item-part'>Кардио</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -307,7 +314,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 13</div>
-                <div className='slider__item-part'>Пресс</div>
+                <div className='slider__item-part'>Отдых</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -316,7 +323,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 14</div>
-                <div className='slider__item-part'>Кардио</div>
+                <div className='slider__item-part'>Пресс</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -339,7 +346,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 16</div>
-                <div className='slider__item-part'>Пресс</div>
+                <div className='slider__item-part'>Ноги</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -348,7 +355,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 17</div>
-                <div className='slider__item-part'>Спина</div>
+                <div className='slider__item-part'>Пресс</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -357,7 +364,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 18</div>
-                <div className='slider__item-part'>Отдых</div>
+                <div className='slider__item-part'>Руки</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -366,7 +373,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 19</div>
-                <div className='slider__item-part'>Ноги</div>
+                <div className='slider__item-part'>Кардио</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -375,7 +382,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 20</div>
-                <div className='slider__item-part'>Пресс</div>
+                <div className='slider__item-part'>Отдых</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -384,7 +391,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 21</div>
-                <div className='slider__item-part'>Кардио</div>
+                <div className='slider__item-part'>Пресс</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -407,7 +414,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 23</div>
-                <div className='slider__item-part'>Пресс</div>
+                <div className='slider__item-part'>Ноги</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -416,7 +423,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 24</div>
-                <div className='slider__item-part'>Спина</div>
+                <div className='slider__item-part'>Пресс</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -425,7 +432,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 25</div>
-                <div className='slider__item-part'>Отдых</div>
+                <div className='slider__item-part'>Руки</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -434,7 +441,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 26</div>
-                <div className='slider__item-part'>Ноги</div>
+                <div className='slider__item-part'>Кардио</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -443,7 +450,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 27</div>
-                <div className='slider__item-part'>Пресс</div>
+                <div className='slider__item-part'>Отдых</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -452,75 +459,7 @@ export const FiveWeeks = () => {
               {' '}
               <div>
                 <div className='slider__item-day'>День 28</div>
-                <div className='slider__item-part'>Кардио</div>
-              </div>
-              <div className='slider__item-img'></div>
-            </div>
-          </Slider>
-        </div>
-      )}
-
-      {currentWeek === 5 && (
-        <div className='slider'>
-          <Slider {...sliderSettings}>
-            <div className={`slider__item ${currentDay >= 29 ? 'unblock' : 'block'} ${currentDay > 29 && 'check'}`}>
-              <div>
-                <div className='slider__item-day'>День 29</div>
-                <div className='slider__item-part'>Грудь</div>
-              </div>
-              <div className='slider__item-img'></div>
-            </div>
-
-            <div className={`slider__item ${currentDay >= 30 ? 'unblock' : 'block'} ${currentDay > 30 && 'check'}`}>
-              {' '}
-              <div>
-                <div className='slider__item-day'>День 30</div>
                 <div className='slider__item-part'>Пресс</div>
-              </div>
-              <div className='slider__item-img'></div>
-            </div>
-
-            <div className={`slider__item ${currentDay >= 31 ? 'unblock' : 'block'} ${currentDay > 31 && 'check'}`}>
-              {' '}
-              <div>
-                <div className='slider__item-day'>День 31</div>
-                <div className='slider__item-part'>Спина</div>
-              </div>
-              <div className='slider__item-img'></div>
-            </div>
-
-            <div className={`slider__item ${currentDay >= 32 ? 'unblock' : 'block'} ${currentDay > 32 && 'check'}`}>
-              {' '}
-              <div>
-                <div className='slider__item-day'>День 32</div>
-                <div className='slider__item-part'>Отдых</div>
-              </div>
-              <div className='slider__item-img'></div>
-            </div>
-
-            <div className={`slider__item ${currentDay >= 33 ? 'unblock' : 'block'} ${currentDay > 33 && 'check'}`}>
-              {' '}
-              <div>
-                <div className='slider__item-day'>День 33</div>
-                <div className='slider__item-part'>Ноги</div>
-              </div>
-              <div className='slider__item-img'></div>
-            </div>
-
-            <div className={`slider__item ${currentDay >= 34 ? 'unblock' : 'block'} ${currentDay > 34 && 'check'}`}>
-              {' '}
-              <div>
-                <div className='slider__item-day'>День 34</div>
-                <div className='slider__item-part'>Пресс</div>
-              </div>
-              <div className='slider__item-img'></div>
-            </div>
-
-            <div className={`slider__item ${currentDay >= 35 ? 'unblock' : 'block'} ${currentDay > 35 && 'check'}`}>
-              {' '}
-              <div>
-                <div className='slider__item-day'>День 35</div>
-                <div className='slider__item-part'>Кардио</div>
               </div>
               <div className='slider__item-img'></div>
             </div>
@@ -530,7 +469,7 @@ export const FiveWeeks = () => {
 
       {checkCurrentDay()}
 
-      {currentDay < 35 ? (
+      {currentDay < 28 ? (
         <button
           className='training__btn--fiveweeks'
           onClick={() => {
@@ -538,7 +477,6 @@ export const FiveWeeks = () => {
             if (currentDay === 8) setCurrentWeek(2)
             if (currentDay === 15) setCurrentWeek(3)
             if (currentDay === 22) setCurrentWeek(4)
-            if (currentDay === 29) setCurrentWeek(5)
             localStorage.removeItem('training')
             localStorage.setItem(
               'training',

@@ -1,9 +1,12 @@
 import React from 'react'
+import Slider from 'react-slick'
+
+import './FoodPage.css'
 
 export const FoodPage = () => {
   return (
-    <div>
-      <h1>FoodPage</h1>
+    <div className='food'>
+      <Slider></Slider>
     </div>
   )
 }
