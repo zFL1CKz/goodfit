@@ -85,8 +85,12 @@
 .slider__item.block .slider__item-img {
   background-image: url('../../img/icons/training--block.svg');
 }
+.slider__item.unblock {
+  background: #0377a6;
+  color: #fff;
+}
 .slider__item.unblock .slider__item-img {
-  background-image: url('../../img/icons/training--unblock.svg');
+  background-image: url('../../img/icons/training--unblock-white.svg');
 }
 .slider__item.check .slider__item-img {
   background-image: url('../../img/icons/training--check.svg');

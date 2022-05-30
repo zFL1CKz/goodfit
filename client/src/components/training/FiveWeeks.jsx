@@ -535,16 +535,17 @@ export const FiveWeeks = () => {
           className='training__btn--fiveweeks'
           onClick={() => {
             setCurrentDay(currentDay + 1)
-            if (currentDay === 8) setCurrentWeek(2)
-            if (currentDay === 15) setCurrentWeek(3)
-            if (currentDay === 22) setCurrentWeek(4)
-            if (currentDay === 29) setCurrentWeek(5)
+            if (currentDay === 7) setCurrentWeek(2)
+            if (currentDay === 14) setCurrentWeek(3)
+            if (currentDay === 21) setCurrentWeek(4)
+            if (currentDay === 28) setCurrentWeek(5)
             localStorage.removeItem('training')
             localStorage.setItem(
               'training',
               JSON.stringify({
                 name: titleInfo,
                 week: currentWeek,
+                maxDays: 35,
                 day: currentDay + 1,
               })
             )

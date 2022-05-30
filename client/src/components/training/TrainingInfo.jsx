@@ -51,7 +51,11 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
           <button
             className='training-info__btn'
             onClick={() => {
-              localStorage.setItem('training', JSON.stringify({ name: titleInfo, week: 1, day: 1 }))
+              let maxDays = 5
+              if (titleInfo === '5 недель до эстетике') maxDays = 35
+              else if (titleInfo === 'От 0 до 100') maxDays = 28
+              else maxDays = 5
+              localStorage.setItem('training', JSON.stringify({ name: titleInfo, week: 1, day: 1, maxDays: maxDays }))
               setStart(true)
             }}>
             Старт

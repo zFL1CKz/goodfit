@@ -1,0 +1,73 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background: rgb(3, 119, 166, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal.show {
+  pointer-events: all;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+.modal.hidden {
+  transition: opacity 0.3s ease-in 1s;
+}
+
+.modal__content {
+  width: 87%;
+  position: fixed;
+  left: 50%;
+  top: 110vh;
+  transform: translate(-50%, -50%);
+  padding: 30px 20px;
+  border-radius: 15px;
+  background: #fff;
+  animation: modalAnimInverted 1s ease-in;
+}
+.modal__content.active {
+  animation: modalAnim 1s ease-out;
+  top: 50%;
+}
+
+@keyframes modalAnim {
+  0% {
+    top: 110vh;
+  }
+  50% {
+    top: 45%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+@keyframes modalAnimInverted {
+  0% {
+    top: 50%;
+  }
+  50% {
+    top: 45%;
+  }
+  100% {
+    top: 110vh;
+  }
+}
+
+.modal__btn {
+  width: 100%;
+  background: #0377a6;
+  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112), inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  padding: 15px 0;
+  border-radius: 25px;
+}

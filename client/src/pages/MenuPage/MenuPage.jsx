@@ -15,31 +15,31 @@ export const MenuPage = () => {
   return (
     <div>
       {currentScreen === 1 && (
-        <div className='profile'>
+        <>
           <TopCircle text='Тренировки' />
           <TrainingPage />
-        </div>
+        </>
       )}
 
       {currentScreen === 2 && (
-        <div className='profile'>
+        <>
           <TopCircle text='Цели' />
           <GoalsPage />
-        </div>
+        </>
       )}
 
       {currentScreen === 3 && (
-        <div className='profile'>
+        <>
           <TopCircle text='Питание' />
           <FoodPage />
-        </div>
+        </>
       )}
 
       {currentScreen === 4 && (
-        <div className='profile'>
+        <>
           <TopCircle text='Профиль' />
           <ProfilePage />
-        </div>
+        </>
       )}
 
       <NavBar checkScreen={checkScreen} />

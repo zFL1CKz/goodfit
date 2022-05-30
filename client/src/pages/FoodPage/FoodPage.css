@@ -1,0 +1,211 @@
+.food__slider {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 0 15px;
+}
+.food__slider_item {
+  position: relative;
+  border: 1px solid #0377a6;
+  background: transparent;
+  border-radius: 15px;
+  padding: 18px 10px;
+  color: #0377a6;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  width: 100%;
+  transition: all 0.3s linear;
+}
+.food__slider_item.active {
+  background: #0377a6;
+  color: #fff;
+}
+.food__slider_img {
+  background-image: url('../../img/icons/training--block.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+}
+.food__slider_item.active .food__slider_img {
+  background-image: url('../../img/icons/training--block-white.svg');
+}
+.food__slider_item.active.unblock .food__slider_img {
+  background-image: url('../../img/icons/training--unblock-white.svg');
+}
+.food__slider_item.unblock .food__slider_img {
+  background-image: url('../../img/icons/training--unblock.svg');
+}
+
+.food__info {
+  width: 100%;
+  height: fit-content;
+  background: url('../../img/food-bg.png') no-repeat;
+  padding: 50px 0 75px;
+  background-size: cover;
+}
+.food__remaining {
+  text-align: center;
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+.food__remaining-num {
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.food__remaining-text.fz20 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.food__remaining-bar {
+  background: #fff;
+  border-radius: 20px;
+  width: 60%;
+  height: 5px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 10px;
+}
+.food__remaining-bar--fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  background: #0377a6;
+  opacity: 0.7;
+  height: 5px;
+  width: 50%;
+}
+.food__remaining-title {
+  margin-bottom: 10px;
+}
+.food__remaining-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.food__remaining-group-item {
+  width: 28%;
+}
+.food__remaining-group-item .food__remaining-bar {
+  width: 100%;
+}
+
+.food__remaining-group-item .food__remaining-bar--fill.bel {
+  width: 30%;
+}
+.food__remaining-group-item .food__remaining-bar--fill.fat {
+  width: 70%;
+}
+.food__remaining-group-item .food__remaining-bar--fill.sug {
+  width: 48%;
+}
+.food__remaining-btn {
+  width: 90%;
+  margin: 40px auto 0;
+  background: #fff;
+  border-radius: 60px;
+  text-align: center;
+  padding: 15px 0;
+  color: #0377a6;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+}
+.food__title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: left;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.food__receipt-grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  margin-bottom: 40px;
+}
+.food__receipt-grid-item {
+  text-align: center;
+  width: 100%;
+  height: 150px;
+  color: #0377a6;
+  font-family: inherit;
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+}
+.food__receipt-title {
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+.food__receipt-img {
+  background: url('../../img/icons/food-add.svg') center no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  margin: 0 auto 10px;
+}
+.food__receipt-text {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.food__water-title {
+  text-align: center;
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.food__water-liter {
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.food__water-glass-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.food__water-glass {
+  background-image: url('../../img/icons/glass.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 27px;
+  height: 37px;
+  /* background-size: cover; */
+  margin-right: 20px;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+.food__water-glass:nth-child(7n) {
+  margin-right: 0;
+}
+.food__water-glass.add {
+  background-image: url('../../img/icons/glass-add.svg');
+  opacity: 1;
+}
+.food--error {
+  text-align: center;
+  font-family: inherit;
+  color: #0377a6;
+  font-size: 24px;
+}
