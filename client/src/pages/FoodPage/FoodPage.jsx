@@ -11,6 +11,17 @@ export const FoodPage = () => {
   let [glasses, setGlasses] = useState(0)
   let [liters, setLiters] = useState('0.00')
 
+  const [modalNavScreen, setModalNavScreen] = useState(1)
+
+  function setModalNavActive(screen) {
+    let navBg = document.querySelector('.food-modal__receipt-nav--bg')
+    if (screen === 1) navBg.style.left = '0'
+    else if (screen === 2) navBg.style.left = '25%'
+    else if (screen === 3) navBg.style.left = '50%'
+    else navBg.style.left = '75%'
+    setModalNavScreen(screen)
+  }
+
   const maxDays = JSON.parse(localStorage.getItem('training'))?.maxDays || 0
 
   let days = []
@@ -158,29 +169,56 @@ export const FoodPage = () => {
 
         <Modal active={modalActive} setActive={setModalActive}>
           <div className='food-modal__block'>
-            <div className='food-modal__title'></div>
+            <div className='food-modal__title'>Согласно персональнному расчету калорий</div>
             <div className='food-modal__list'>
-              <div className='food-modal__list-item'></div>
-              <div className='food-modal__list-item'></div>
-              <div className='food-modal__list-item'></div>
+              <div className='food-modal__list-item active'>2400 калорий, чтобы вес не менялся </div>
+              <div className='food-modal__list-item'>2230 калорий, для похудения </div>
+              <div className='food-modal__list-item'>1950 калорий, чтобы похудеть быстро </div>
             </div>
           </div>
 
           <div className='food-modal__block'>
-            <div className='food-modal__title'></div>
+            <div className='food-modal__title'>Приемы пищи</div>
             <div className='food-modal__receipt'>
               <div className='food-modal__receipt-nav'>
-                <div className='food-modal__receipt-nav-item'></div>
-                <div className='food-modal__receipt-nav-item'></div>
-                <div className='food-modal__receipt-nav-item'></div>
-                <div className='food-modal__receipt-nav-item'></div>
+                <div className={modalNavScreen === 1 ? 'food-modal__receipt-nav-item active' : 'food-modal__receipt-nav-item'} onClick={() => setModalNavActive(1)}>
+                  Завтрак
+                </div>
+                <div className={modalNavScreen === 2 ? 'food-modal__receipt-nav-item active' : 'food-modal__receipt-nav-item'} onClick={() => setModalNavActive(2)}>
+                  Обед
+                </div>
+                <div className={modalNavScreen === 3 ? 'food-modal__receipt-nav-item active' : 'food-modal__receipt-nav-item'} onClick={() => setModalNavActive(3)}>
+                  Ужин
+                </div>
+                <div className={modalNavScreen === 4 ? 'food-modal__receipt-nav-item active' : 'food-modal__receipt-nav-item'} onClick={() => setModalNavActive(4)}>
+                  Перекус
+                </div>
+                <div className='food-modal__receipt-nav--bg'></div>
               </div>
 
               <div className='food-modal__receipt-info'>
                 <div className='food-modal__receipt-info-item'>
-                  <div></div>
-                  <div></div>
-                  <div></div>
+                  <div>Калории</div>
+                  <div className='food-modal__receipt-dots'></div>
+                  <div>792 ккал</div>
+                </div>
+
+                <div className='food-modal__receipt-info-item'>
+                  <div>Углеводы</div>
+                  <div className='food-modal__receipt-dots'></div>
+                  <div>130 г</div>
+                </div>
+
+                <div className='food-modal__receipt-info-item'>
+                  <div>Белки</div>
+                  <div className='food-modal__receipt-dots'></div>
+                  <div>80 г</div>
+                </div>
+
+                <div className='food-modal__receipt-info-item'>
+                  <div>Жиры</div>
+                  <div className='food-modal__receipt-dots'></div>
+                  <div>80 г</div>
                 </div>
               </div>
             </div>

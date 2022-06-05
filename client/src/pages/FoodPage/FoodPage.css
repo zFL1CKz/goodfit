@@ -44,7 +44,7 @@
 .food__info {
   width: 100%;
   height: fit-content;
-  background: url('../../img/food-bg.png') no-repeat;
+  background: url('../../img/food-bg.png') center top no-repeat;
   padding: 50px 0 75px;
   background-size: cover;
 }
@@ -208,4 +208,98 @@
   font-family: inherit;
   color: #0377a6;
   font-size: 24px;
+}
+
+.food-modal__block {
+  margin-bottom: 30px;
+  font-family: inherit;
+}
+.food-modal__title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #707070;
+  margin-bottom: 20px;
+}
+.food-modal__list {
+  border: 1px solid #0377a6;
+  border-radius: 15px;
+  padding: 20px;
+}
+.food-modal__list-item {
+  font-weight: 300;
+  font-size: 12px;
+  margin-bottom: 20px;
+  color: #949397;
+  transition: all 0.3s linear;
+}
+.food-modal__list-item.active {
+  color: #0377a6;
+}
+.food-modal__list-item:last-child {
+  margin-bottom: 0;
+}
+.food-modal__receipt {
+  border: 1px solid #0377a6;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.food-modal__receipt-nav {
+  text-align: center;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #0377a6;
+  position: relative;
+}
+.food-modal__receipt-nav-item {
+  padding: 13px 0;
+  color: #0377a6;
+  border-right: 1px solid #0377a6;
+  width: 25%;
+  font-size: 12px;
+  font-weight: 300;
+  transition: all 0.3s linear;
+  position: relative;
+  z-index: 2;
+}
+.food-modal__receipt-nav-item:nth-last-of-type(2) {
+  border-right: 0;
+}
+.food-modal__receipt-nav-item.active {
+  color: #fff;
+}
+.food-modal__receipt-nav--bg {
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: #0377a6;
+  transition: left 0.3s linear;
+}
+.food-modal__receipt-info {
+  padding: 0 13px 20px;
+  color: #949397;
+  font-weight: 300;
+  font-size: 10px;
+}
+.food-modal__receipt-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.food-modal__receipt-info-item:last-child {
+  margin-bottom: 0;
+}
+.food-modal__receipt-dots {
+  flex: 1;
+  border-bottom: 1px dotted #949397;
+  margin: 0 10px;
 }

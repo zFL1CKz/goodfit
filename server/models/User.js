@@ -12,6 +12,7 @@ const schema = new Schema({
     gender: { type: Types.ObjectId, ref: 'Gender' },
   },
   todos: [{ type: Types.ObjectId, ref: 'Todo' }],
+  foods: [{ type: Types.ObjectId, ref: 'UserFood' }],
 })
 
 module.exports = model('User', schema)
