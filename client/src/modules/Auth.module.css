@@ -38,8 +38,7 @@
 }
 .auth__btn {
   background: #0377a6;
-  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112),
-    inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
+  box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112), inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
   backdrop-filter: blur(129.511px);
   border-radius: 60px;
   font-family: inherit;
