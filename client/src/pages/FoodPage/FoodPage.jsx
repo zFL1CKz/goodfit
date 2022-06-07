@@ -103,6 +103,7 @@ export const FoodPage = () => {
               position: 'absolute',
               top: '50px',
               left: '100px',
+              zIndex: '2'
             }}
             onClick={() => {
               setIsReceipt(false)

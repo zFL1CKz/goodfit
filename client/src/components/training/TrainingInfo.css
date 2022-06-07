@@ -16,6 +16,7 @@
 .training-info__focus ul {
   font-weight: 300;
   font-size: 16px;
+  line-height: 19px;
   color: #949397;
 }
 .training-info__focus ul li:before {
@@ -43,4 +44,7 @@
 .training-info__btn:hover {
   color: #0377a6;
   background: transparent;
+}
+.training--bg{
+  margin-bottom: 40px;
 }

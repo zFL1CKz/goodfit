@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import back from '../../img/back.svg'
 import { FiveWeeks } from './FiveWeeks'
 import { From0To100 } from './From0To100'
+import { VoinSparti } from './VoinSparti'
 import './TrainingInfo.css'
 
 export const TrainingInfo = ({ item, setInfo, started }) => {
@@ -15,7 +16,7 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
   function checkTrainingName() {
     if (JSON.parse(localStorage.getItem('training')).name === '5 недель к эстетике') return <FiveWeeks />
     else if (JSON.parse(localStorage.getItem('training')).name === 'От 0 до 100') return <From0To100 />
-    else return <span>Воин</span>
+    else return <VoinSparti />
   }
 
   if (!start) {
@@ -36,7 +37,7 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
           }}
         />
 
-        <img src={item.querySelector('.training--bg').src} alt='' style={{ marginBottom: '40px' }} />
+        <img src={item.querySelector('.training--bg').src} alt='' className='training--bg' />
         <div className='container'>
           <div className='training-info__title'>О программе</div>
           <div className='training-info__focus'>
@@ -82,6 +83,7 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
         />
 
         {checkTrainingName()}
+
       </>
     )
   }

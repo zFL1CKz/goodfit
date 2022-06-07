@@ -96,6 +96,8 @@ export const TrainingPage = () => {
             <img src={img3} alt='' className='training--bg' />
             <img src={tap} alt='' className='training--tap' />
           </div>
+
+          <div style={{display: 'block', height: '100px'}}></div>
         </>
       ) : (
         <TrainingInfo item={info} setInfo={setInfo} started={start} />

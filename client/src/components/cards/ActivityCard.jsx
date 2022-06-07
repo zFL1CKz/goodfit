@@ -6,16 +6,19 @@ export const ActivityCard = ({ item, active }) => {
 
   function handleActive() {
     clearActivity()
-    ref.current.classList.add('active')
+    setTimeout(() => {
+      ref.current.classList.add('active')
+    }, 0);
   }
   function clearActivity() {
-    let arr = document.querySelectorAll('.activity__item')
+    setTimeout(() => {
+      let arr = document.querySelectorAll('.activity__item')
     for (const item of arr) {
       if (item.classList.contains('active')) {
         item.classList.remove('active')
-        break
       }
     }
+    }, 0);
   }
   function firstActive() {
     clearActivity()
@@ -36,6 +39,7 @@ export const ActivityCard = ({ item, active }) => {
       }
     }, 0)
   }
+
 
   return (
     <div className='activity__item' ref={ref} onClick={handleActive}>

@@ -201,8 +201,7 @@ export const RegisterPage = () => {
         {screen === 5 && (
           <div>
             <TopCircle text={'Step 1 of 3'} />
-            <img src={screenImg5} alt='' className={authModule.auth__img} />
-
+            <div className={authModule.auth__img}></div>
             <div className={authModule.auth__footer_circle}>
               <div>
                 <div className={authModule.auth__footer_title}>Добро пожаловать в приложение GoodFIT</div>

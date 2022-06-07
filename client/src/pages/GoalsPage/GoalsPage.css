@@ -1,9 +1,11 @@
+.goals{
+  background: #fff;
+}
 .goals__item {
   background: #0377a6;
   box-shadow: inset 47.2667px -47.2667px 47.2667px rgba(2, 90, 126, 0.112),
     inset -47.2667px 47.2667px 47.2667px rgba(255, 255, 255, 0.112);
   backdrop-filter: blur(129.511px);
-  border-bottom: 1px solid #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,6 +18,9 @@
   font-size: 16px;
   color: #fff;
   transition: all 0.3s linear;
+}
+.goals__item:nth-last-of-type(2){
+  border-radius: 0 0 30px 30px;
 }
 .goals__item.completed {
   opacity: 0.7;
@@ -60,7 +65,7 @@
   font-weight: 700;
   font-size: 16px;
   color: #fff;
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 30px 30px 0px 0px !important;
 }
 .goals__img {
   min-width: 20px;
