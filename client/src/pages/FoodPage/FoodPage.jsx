@@ -7,13 +7,16 @@ import { Modal } from '../../components/modals/modal'
 import { Loader } from '../../components/loader/Loader'
 
 import back from '../../img/back.svg'
+import foodAdd from '../../img/icons/food-add.svg'
 import searchImg from '../../img/icons/search.svg'
 import './FoodPage.css'
 
 export const FoodPage = () => {
   const [modalActive, setModalActive] = useState(false)
   const [isReceipt, setIsReceipt] = useState(false)
+  const [isSearch, setIsSearch] = useState(false)
   const [isReady, setIsReady] = useState(false)
+  const [searchInput, setSearchInput] = useState('')
   const currentDay = JSON.parse(localStorage.getItem('training'))?.day || 0
   const [selectedDay, setSelectedDay] = useState(currentDay)
   let [glasses, setGlasses] = useState(0)
@@ -21,6 +24,12 @@ export const FoodPage = () => {
   const { request, error, clearError } = useHttp()
 
   let [liters, setLiters] = useState('0.00')
+
+  const searchHandler = (e) => setSearchInput(e.target.value)
+
+  useEffect(() => {
+    if (searchInput.length > 0) setIsSearch(true)
+  }, [searchInput])
 
   const [food, setFood] = useState([])
 
@@ -67,6 +76,12 @@ export const FoodPage = () => {
     setIsReceipt(true)
   }
 
+  function setActiveReceiptItem(e) {
+    if (e.classList.contains('active')) return
+    document.querySelector('.receipt__nav-item.active').classList.remove('active')
+    e.classList.add('active')
+  }
+
   const sliderSettings = {
     dots: false,
     infinite: false,
@@ -103,7 +118,7 @@ export const FoodPage = () => {
               position: 'absolute',
               top: '50px',
               left: '100px',
-              zIndex: '2'
+              zIndex: '2',
             }}
             onClick={() => {
               setIsReceipt(false)
@@ -112,12 +127,31 @@ export const FoodPage = () => {
           />
           <div className='container'>
             <div className='receipt__nav'>
-              <div className='receipt__nav-item active'>Продукты</div>
-              <div className='receipt__nav-item'>Готовые блюда</div>
+              <div className='receipt__nav-item active' onClick={(e) => setActiveReceiptItem(e.currentTarget)}>
+                Продукты
+              </div>
+              <div className='receipt__nav-item' onClick={(e) => setActiveReceiptItem(e.currentTarget)}>
+                Готовые блюда
+              </div>
             </div>
             <div className='receipt__search'>
               <img src={searchImg} alt='' />
-              <input type='text' placeholder='Поиск продукта...' />
+              <input type='text' placeholder='Поиск продукта...' onChange={searchHandler} />
+            </div>
+
+            <div className='receipt__item'>
+              <div className='receipt__item-name'>Яйцо (вареное) - 60 ккал</div>
+              <img src={foodAdd} alt='' />
+            </div>
+
+            <div className='receipt__item'>
+              <div className='receipt__item-name'>Яйцо (вареное) - 60 ккал</div>
+              <img src={foodAdd} alt='' />
+            </div>
+
+            <div className='receipt__item'>
+              <div className='receipt__item-name'>Яйцо (вареное) - 60 ккал</div>
+              <img src={foodAdd} alt='' />
             </div>
           </div>
         </>

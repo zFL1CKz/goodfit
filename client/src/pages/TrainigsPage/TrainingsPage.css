@@ -6,8 +6,8 @@
   position: relative;
 }
 .training--bg {
-  background-size: cover;
   width: 100%;
+  min-height: 200px;
 }
 .training-item__title {
   font-weight: 700;

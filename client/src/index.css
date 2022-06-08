@@ -5,17 +5,15 @@ html,
 body {
   font-family: 'Muller';
   font-size: 16px;
-  width: 100vw;
   min-height: 100vh;
   height: 100%;
 }
 
 #root {
-  width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
   position: relative;
   background: #fff;
-  height: fit-content;
 }
 .container {
   width: 100%;
