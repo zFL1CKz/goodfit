@@ -23,7 +23,7 @@ export const MenuPage = () => {
 
       {currentScreen === 2 && (
         <>
-          <TopCircle text='Цели' />
+          <TopCircle text='Задачи' />
           <GoalsPage />
         </>
       )}
