@@ -158,11 +158,12 @@ export const ProfilePage = () => {
     return (
       <div>
         <div>
-          <div className='container'>
+          <div className="container">
             <div className={profileModule.profile__group}>
               <label
-                htmlFor='calcCheck'
-                className={profileModule.profile__labelCheck}>
+                htmlFor="calcCheck"
+                className={profileModule.profile__labelCheck}
+              >
                 <div className={profileModule.profile__title}>
                   Расчет калорий
                 </div>
@@ -171,8 +172,8 @@ export const ProfilePage = () => {
                 </div>
               </label>
               <input
-                type='checkbox'
-                id='calcCheck'
+                type="checkbox"
+                id="calcCheck"
                 className={profileModule.profile__inputCheck}
                 checked={isChecked}
                 onChange={() => setIsChecked(!isChecked)}
@@ -183,11 +184,11 @@ export const ProfilePage = () => {
               <div className={profileModule.profile__title}>Дата рождения</div>
               {resultDate === undefined ? (
                 <InputMask
-                  mask='99.99.9999'
-                  maskPlaceholder=''
+                  mask="99.99.9999"
+                  maskPlaceholder=""
                   onChange={infoHandler}
-                  id='birth'
-                  name='birth'
+                  id="birth"
+                  name="birth"
                   className={profileModule.profile__input}
                 />
               ) : (
@@ -199,7 +200,8 @@ export const ProfilePage = () => {
                     setTimeout(() => {
                       document.querySelector('#birth').focus()
                     }, 0)
-                  }}>
+                  }}
+                >
                   {resultDate}
                 </span>
               )}
@@ -209,15 +211,15 @@ export const ProfilePage = () => {
               <div className={profileModule.profile__title}>Рост</div>
               <div>
                 <InputMask
-                  mask='999'
-                  maskPlaceholder=''
+                  mask="999"
+                  maskPlaceholder=""
                   placeholder={userInfo.info.height}
-                  id='height'
+                  id="height"
                   onChange={infoHandler}
-                  name='height'
+                  name="height"
                   className={profileModule.profile__input}
                 />
-                <label htmlFor='height' className={profileModule.label__span}>
+                <label htmlFor="height" className={profileModule.label__span}>
                   &nbsp;cm
                 </label>
               </div>
@@ -226,15 +228,15 @@ export const ProfilePage = () => {
               <div className={profileModule.profile__title}>Вес</div>
               <div>
                 <InputMask
-                  mask='999'
-                  maskPlaceholder=''
+                  mask="999"
+                  maskPlaceholder=""
                   placeholder={userInfo.info.weight}
-                  id='weight'
+                  id="weight"
                   onChange={infoHandler}
-                  name='weight'
+                  name="weight"
                   className={profileModule.profile__input}
                 />
-                <label htmlFor='weight' className={profileModule.label__span}>
+                <label htmlFor="weight" className={profileModule.label__span}>
                   &nbsp;kg
                 </label>
               </div>
@@ -247,27 +249,30 @@ export const ProfilePage = () => {
                   className={`${profileModule.gender__item} ${
                     genderIsMale && profileModule.active
                   }`}
-                  onClick={() => setGenderIsMale(true)}>
+                  onClick={() => setGenderIsMale(true)}
+                >
                   Муж.
                 </div>
                 <div
                   className={`${profileModule.gender__item} ${
                     !genderIsMale && profileModule.active
                   }`}
-                  onClick={() => setGenderIsMale(false)}>
+                  onClick={() => setGenderIsMale(false)}
+                >
                   Жен.
                 </div>
               </div>
             </div>
 
             <div className={authModule.absolute} style={{ bottom: '90px' }}>
-              <div className='container'>
+              <div className="container">
                 <div className={errorModule.error__text}>{validError}</div>
                 <div
                   className={authModule.auth__btn}
                   onClick={() => {
                     validInfo()
-                  }}>
+                  }}
+                >
                   Сохранить
                 </div>
               </div>
@@ -276,11 +281,13 @@ export const ProfilePage = () => {
             <div
               className={`${profileModule.activity} ${
                 isChecked && profileModule.active
-              }`}>
+              }`}
+            >
               <div
                 className={`${authModule.auth__title} ${authModule.mb40}`}
-                style={{ textAlign: 'left', lineHeight: '1' }}>
-                Cтепень физической активности
+                style={{ textAlign: 'left', lineHeight: '1' }}
+              >
+                Выберите вашу цель
               </div>
               {activities.map((item, index) => {
                 return (
