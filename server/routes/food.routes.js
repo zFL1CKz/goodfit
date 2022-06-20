@@ -33,4 +33,13 @@ router.post('/setfood', auth, async (req, res) => {
   }
 })
 
+router.get('/getfoodtoday', auth, async (req, res) => {
+  try {
+    const food = await Food.find({ owner: req.user.userId })
+    res.json(food)
+  } catch (error) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+  }
+})
+
 module.exports = router

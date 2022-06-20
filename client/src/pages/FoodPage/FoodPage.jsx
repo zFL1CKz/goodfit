@@ -19,8 +19,10 @@ export const FoodPage = () => {
   const currentDay = JSON.parse(localStorage.getItem('training'))?.day || 0
   const [selectedDay, setSelectedDay] = useState(currentDay)
   let [glasses, setGlasses] = useState(0)
+  const [a, setA] = useState('загрузка...')
   const { token } = useContext(AuthContext)
   const { request, error, clearError } = useHttp()
+  const [user, setUser] = useState([])
 
   let [liters, setLiters] = useState('0.00')
 
@@ -55,12 +57,27 @@ export const FoodPage = () => {
 
   checkDays()
 
+  const getUser = useCallback(async () => {
+    try {
+      await request('/api/getuserinfo', 'GET', null, {
+        Authorization: `Bearer ${token}`,
+      }).then((res) => {
+        setUser(res)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }, [request, token])
+
+  useEffect(() => {
+    getUser()
+  }, [getUser])
+
   const getFood = useCallback(async () => {
     try {
       await request('/api/getfood', 'GET', null).then((res) => {
         setFood(res)
       })
-      setIsReady(true)
     } catch (error) {
       console.log(error)
     }
@@ -70,11 +87,43 @@ export const FoodPage = () => {
     getFood()
   }, [getFood])
 
+  useEffect(() => {
+    if (typeof user === Object && typeof food === Object) setIsReady(true)
+  }, [user, food])
+
   function setReceipt(item) {
     document.querySelector('.header__title').innerHTML = item.querySelector(
       '.food__receipt-title'
     ).innerHTML
     setIsReceipt(true)
+  }
+
+  function checkCalc(number) {
+    if (Object.keys(user).length > 0) {
+      let age = Math.floor(
+        (new Date() - new Date(user.info.birth)) /
+          1000 /
+          (60 * 60 * 24) /
+          365.25
+      )
+      let normal = Math.floor(
+        user.info.weight * 10 + user.info.height * 6.25 - age * 5 + 5
+      )
+      if (number === 1) return normal
+      else if (number === 2) return Math.floor(normal * 0.85)
+      else return Math.floor(normal * 0.65)
+    }
+  }
+
+  function checkCurrentCalc() {
+    let arr = document.querySelectorAll('.food-modal__list-item')
+    if (arr.length > 0) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].classList.contains('active')) {
+          return arr[i].innerHTML.split(' ')[0]
+        }
+      }
+    }
   }
 
   function showFoodInfo(e) {
@@ -241,7 +290,7 @@ export const FoodPage = () => {
           <div className="food__info">
             <div className="container">
               <div className="food__remaining">
-                <div className="food__remaining-num">2400</div>
+                <div className="food__remaining-num">{checkCurrentCalc()}</div>
                 <div className="food__remaining-text fz20">осталось</div>
                 <div
                   className="food__remaining-bar"
@@ -345,17 +394,35 @@ export const FoodPage = () => {
           <Modal active={modalActive} setActive={setModalActive}>
             <div className="food-modal__block">
               <div className="food-modal__title">
-                Согласно персональнному расчету калорий
+                Согласно персональному расчету калорий
               </div>
               <div className="food-modal__list">
-                <div className="food-modal__list-item active">
-                  2400 калорий, чтобы вес не менялся{' '}
+                <div
+                  className={
+                    user.activity?.name === 'Поддерживать текущий вес'
+                      ? 'food-modal__list-item active'
+                      : 'food-modal__list-item'
+                  }
+                >
+                  {checkCalc(1)} калорий, чтобы вес не менялся{' '}
                 </div>
-                <div className="food-modal__list-item">
-                  2230 калорий, для похудения{' '}
+                <div
+                  className={
+                    user.activity?.name === 'Похудеть'
+                      ? 'food-modal__list-item active'
+                      : 'food-modal__list-item'
+                  }
+                >
+                  {checkCalc(2)} калорий, для похудения{' '}
                 </div>
-                <div className="food-modal__list-item">
-                  1950 калорий, чтобы похудеть быстро{' '}
+                <div
+                  className={
+                    user.activity?.name === 'Похудеть быстро'
+                      ? 'food-modal__list-item active'
+                      : 'food-modal__list-item'
+                  }
+                >
+                  {checkCalc(3)} калорий, чтобы похудеть быстро{' '}
                 </div>
               </div>
             </div>
