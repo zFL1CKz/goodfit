@@ -92,7 +92,7 @@ export const TrainingPage = () => {
                 <img src={biceps} alt='' />
               </div>
             </div>
-            <div className='training--focus'>Нема</div>
+            <div className='training--focus'>Я горилла</div>
             <img src={img3} alt='' className='training--bg' />
             <img src={tap} alt='' className='training--tap' />
           </div>

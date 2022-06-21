@@ -248,7 +248,7 @@ export const RegisterPage = () => {
 
         {screen === 5 && (
           <div>
-            <TopCircle text={'Step 1 of 3'} />
+            <TopCircle text={'Шаг 1 из 3'} />
             <div className={authModule.auth__img}></div>
             <div className={authModule.auth__footer_circle}>
               <div>
@@ -279,7 +279,7 @@ export const RegisterPage = () => {
 
         {screen === 6 && (
           <div>
-            <TopCircle text={'Step 2 of 3'} />
+            <TopCircle text={'Шаг 2 из 3'} />
             <div className="container">
               <div className={`${authModule.auth__title} ${authModule.mb60}`}>
                 Выберите вашу цель
@@ -318,7 +318,7 @@ export const RegisterPage = () => {
 
         {screen === 7 && (
           <div>
-            <TopCircle text={'Step 3 of 3'} />
+            <TopCircle text={'Шаг 3 из 3'} />
             <div className="container">
               <div className={authModule.auth__title}>Личные данные</div>
               <div className={authModule.auth__subtitle}>

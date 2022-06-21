@@ -15,19 +15,25 @@ export const FoodPage = () => {
   const [isReceipt, setIsReceipt] = useState(false)
   const [isSearch, setIsSearch] = useState(false)
   const [isReady, setIsReady] = useState(false)
+  const [remainingCalc, setRemainingCalc] = useState(0)
   const [searchInput, setSearchInput] = useState('')
+  const [foodInput, setFoodInput] = useState(100)
   const currentDay = JSON.parse(localStorage.getItem('training'))?.day || 0
   const [selectedDay, setSelectedDay] = useState(currentDay)
   let [glasses, setGlasses] = useState(0)
-  const [a, setA] = useState('загрузка...')
   const { token } = useContext(AuthContext)
   const { request, error, clearError } = useHttp()
   const [user, setUser] = useState([])
 
   let [liters, setLiters] = useState('0.00')
 
-  const searchHandler = (e) => setSearchInput(e.target.value)
+  useEffect(() => {
+    if(liters > 3.5) document.querySelector('.food__water-warning').style.display = 'block'
+  }, [liters])
 
+  const searchHandler = e => setSearchInput(e.target.value)
+  const foodInputHandler = e => setFoodInput(e.target.value)
+ 
   useEffect(() => {
     if (searchInput.length > 0) setIsSearch(true)
   }, [searchInput])
@@ -77,6 +83,7 @@ export const FoodPage = () => {
     try {
       await request('/api/getfood', 'GET', null).then((res) => {
         setFood(res)
+        setIsReady(true)
       })
     } catch (error) {
       console.log(error)
@@ -114,38 +121,36 @@ export const FoodPage = () => {
       else return Math.floor(normal * 0.65)
     }
   }
-
-  function checkCurrentCalc() {
-    let arr = document.querySelectorAll('.food-modal__list-item')
-    if (arr.length > 0) {
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].classList.contains('active')) {
-          return arr[i].innerHTML.split(' ')[0]
-        }
-      }
-    }
-  }
+  
+  useEffect(() => {
+    setRemainingCalc(document.querySelector('.food-modal__list-item.active')?.innerHTML.split(' ')[0] || '—')
+  }, [user])
 
   function showFoodInfo(e) {
     let itemActive = document.querySelector('.receipt__item-info.active')
     if (itemActive !== null) itemActive.classList.remove('active')
     e.querySelector('.receipt__item-info').classList.add('active')
     e.querySelector('.receipt__item-info input').focus()
+    setFoodInput(100)
   }
 
   async function addFood(e, item) {
-    if (e.querySelector('input').value.length <= 0) {
+    if (foodInput <= 0) {
       e.querySelector('.receipt__item-input').style.color = 'red'
       e.querySelector('input').style.borderBottomColor = 'red'
       e.querySelector('input').style.color = 'red'
     } else {
+      e.querySelector('.receipt__item--added').style.fontSize = '14px'
+      setTimeout(() => {
+      e.querySelector('.receipt__item--added').style.fontSize = '0px'
+      }, 2500);
       e.querySelector('.receipt__item-input').style.color = '#74808c'
       e.querySelector('input').style.borderBottomColor = '#0377a6'
       e.querySelector('input').style.color = '#0377a6'
 
       let reqObject = {
         foodId: item._id,
-        gram: Number(e.querySelector('input').value),
+        gram: Number(foodInput),
         partOfDay: document.querySelector('.header__title').innerHTML,
       }
 
@@ -162,7 +167,7 @@ export const FoodPage = () => {
         console.log(error)
       }
 
-      e.querySelector('input').value = ''
+      setFoodInput(100)
     }
   }
 
@@ -249,29 +254,33 @@ export const FoodPage = () => {
                   </div>
                   <div className="receipt__item-info">
                     <div className="receipt__item-info--bel">
-                      Калории: {item.cal}
+                      Калории: {Math.floor(item.cal * foodInput / 100)}
                     </div>
                     <div className="receipt__item-info--bel">
-                      Белки: {item.bel}
+                      Белки: {Math.floor(item.bel * foodInput / 100)}
                     </div>
                     <div className="receipt__item-info--bel">
-                      Жиры: {item.fat}
+                      Жиры: {Math.floor(item.fat * foodInput / 100)}
                     </div>
                     <div className="receipt__item-info--bel">
-                      Углеводы: {item.sug}
+                      Углеводы: {Math.floor(item.sug * foodInput / 100)}
                     </div>
 
                     <div className="receipt__item-input">
                       <div className="receipt__item-input--text">
                         Введите количество грамм:
                       </div>
-                      <input type="number" />
+                      <input type="number" value={foodInput} onChange={foodInputHandler}/>
                       <div>г</div>
                     </div>
+
+                    <div className="receipt__item--added">Продукт успешно добавлен!</div>
                   </div>
                 </div>
               )
             })}
+
+            <div style={{height: '80px'}}></div>
           </div>
         </>
       )
@@ -290,7 +299,7 @@ export const FoodPage = () => {
           <div className="food__info">
             <div className="container">
               <div className="food__remaining">
-                <div className="food__remaining-num">{checkCurrentCalc()}</div>
+                <div className="food__remaining-num">{remainingCalc}</div>
                 <div className="food__remaining-text fz20">осталось</div>
                 <div
                   className="food__remaining-bar"
@@ -302,25 +311,16 @@ export const FoodPage = () => {
                 <div className="food__remaining-group">
                   <div className="food__remaining-group-item">
                     <div className="food__remaining-title">Белки</div>
-                    <div className="food__remaining-bar">
-                      <div className="food__remaining-bar--fill bel"></div>
-                    </div>
                     <div className="food__remaining-subtitle">0 г</div>
                   </div>
 
                   <div className="food__remaining-group-item">
                     <div className="food__remaining-title">Жиры</div>
-                    <div className="food__remaining-bar">
-                      <div className="food__remaining-bar--fill fat"></div>
-                    </div>
                     <div className="food__remaining-subtitle">0 г</div>
                   </div>
 
                   <div className="food__remaining-group-item">
                     <div className="food__remaining-title">Углеводы</div>
-                    <div className="food__remaining-bar">
-                      <div className="food__remaining-bar--fill sug"></div>
-                    </div>
                     <div className="food__remaining-subtitle">0 г</div>
                   </div>
                 </div>
@@ -387,6 +387,8 @@ export const FoodPage = () => {
                     onClick={addGlass}
                   ></div>
                 </div>
+
+                <div className="food__water-warning">Внимание, такое количество воды опасно для здоровья!</div>
               </div>
             </div>
           </div>
