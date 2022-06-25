@@ -20,7 +20,7 @@ router.post('/setfood', auth, async (req, res) => {
     const food = await new UserFood({
       owner: req.user.userId,
       food: foodId,
-      date: new Date(),
+      date: new Date().toLocaleDateString(),
       gram: gram,
       partOfDay: partOfDay,
     })
@@ -33,9 +33,9 @@ router.post('/setfood', auth, async (req, res) => {
   }
 })
 
-router.get('/getfoodtoday', auth, async (req, res) => {
+router.get('/getuserfood', auth, async (req, res) => {
   try {
-    const food = await Food.find({ owner: req.user.userId })
+    const food = await UserFood.find({ owner: req.user.userId, date: new Date().toLocaleDateString() }).populate('food')
     res.json(food)
   } catch (error) {
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
