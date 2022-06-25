@@ -424,3 +424,10 @@
   font-weight: 300;
   display: none;
 }
+.search--error {
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  color: #74808c;
+  margin-top: -10px;
+}

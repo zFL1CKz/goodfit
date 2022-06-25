@@ -30,6 +30,11 @@ export const FoodPage = () => {
   const [user, setUser] = useState([])
   const [userFood, setUserFood] = useState([])
   const [userFoodWithDay, setUserFoodWithDay] = useState([])
+  const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [readyMeals, setReadyMeals] = useState([])
+  const [filteredReadyMeals, setFilteredReadyMeals] = useState([])
+  const [currentReceiptActive, setCurrentReceiptActive] = useState(1)
 
   let [liters, setLiters] = useState('0.00')
 
@@ -42,9 +47,19 @@ export const FoodPage = () => {
 
   useEffect(() => {
     if (searchInput.length > 0) setIsSearch(true)
+    else setIsSearch(false)
+    let productsArr = []
+    let readyMealsArr = []
+    for (const product of products) {
+      if (product.name.toLowerCase().indexOf(searchInput.trim().toLowerCase()) !== -1) productsArr.push(product)
+    }
+    for (const meal of readyMeals) {
+      if (meal.name.toLowerCase().indexOf(searchInput.trim().toLowerCase()) !== -1) readyMealsArr.push(meal)
+    }
+    setFilteredProducts(productsArr)
+    setFilteredReadyMeals(readyMealsArr)
+    // if (Object.values(products).name.toLowerCase().indexOf(searchInput.trim().toLowerCase()) !== -1) productsArr.push(products)
   }, [searchInput])
-
-  const [food, setFood] = useState([])
 
   const [modalNavScreen, setModalNavScreen] = useState(1)
 
@@ -128,7 +143,8 @@ export const FoodPage = () => {
   const getFood = useCallback(async () => {
     try {
       await request('/api/getfood', 'GET', null).then((res) => {
-        setFood(res)
+        setProducts(res.filter((item) => item.type.name === 'Продукты'))
+        setReadyMeals(res.filter((item) => item.type.name === 'Готовые блюда'))
       })
     } catch (error) {
       console.log(error)
@@ -232,12 +248,6 @@ export const FoodPage = () => {
     }
   }
 
-  function setActiveReceiptItem(e) {
-    if (e.classList.contains('active')) return
-    document.querySelector('.receipt__nav-item.active').classList.remove('active')
-    e.classList.add('active')
-  }
-
   function addGlass() {
     setGlasses((glasses += 1))
     let div = document.createElement('div')
@@ -277,42 +287,149 @@ export const FoodPage = () => {
             />
             <div className='container'>
               <div className='receipt__nav'>
-                <div className='receipt__nav-item active' onClick={(e) => setActiveReceiptItem(e.currentTarget)}>
+                <div className={`${currentReceiptActive === 1 ? 'receipt__nav-item active' : 'receipt__nav-item'}`} onClick={() => setCurrentReceiptActive(1)}>
                   Продукты
                 </div>
-                <div className='receipt__nav-item' onClick={(e) => setActiveReceiptItem(e.currentTarget)}>
+                <div className={`${currentReceiptActive === 2 ? 'receipt__nav-item active' : 'receipt__nav-item'}`} onClick={() => setCurrentReceiptActive(2)}>
                   Готовые блюда
                 </div>
               </div>
               <div className='receipt__search'>
                 <img src={searchImg} alt='' />
-                <input type='text' placeholder='Поиск продукта...' onChange={searchHandler} />
+                <input type='text' placeholder={currentReceiptActive === 1 ? 'Поиск продукта...' : 'Поиск готового блюда...'} onChange={searchHandler} />
               </div>
 
-              {food.map((item, index) => {
-                return (
-                  <div className='receipt__item' key={index} onClick={(e) => showFoodInfo(e.currentTarget)}>
-                    <div className='receipt__item-group'>
-                      <div className='receipt__item-name'>{item.name}</div>
-                      <img src={foodAdd} alt='' onClick={(e) => addFood(e.currentTarget.parentNode.parentNode, item)} />
-                    </div>
-                    <div className='receipt__item-info'>
-                      <div className='receipt__item-info--bel'>Калории: {Math.floor((item.cal * foodInput) / 100)}</div>
-                      <div className='receipt__item-info--bel'>Белки: {Math.floor((item.bel * foodInput) / 100)}</div>
-                      <div className='receipt__item-info--bel'>Жиры: {Math.floor((item.fat * foodInput) / 100)}</div>
-                      <div className='receipt__item-info--bel'>Углеводы: {Math.floor((item.sug * foodInput) / 100)}</div>
+              {currentReceiptActive === 1 && (
+                <>
+                  {isSearch ? (
+                    <>
+                      {filteredProducts.length > 0 ? (
+                        <>
+                          {filteredProducts.map((item, index) => {
+                            return (
+                              <div className='receipt__item' key={index} onClick={(e) => showFoodInfo(e.currentTarget)}>
+                                <div className='receipt__item-group'>
+                                  <div className='receipt__item-name'>{item.name}</div>
+                                  <img src={foodAdd} alt='' onClick={(e) => addFood(e.currentTarget.parentNode.parentNode, item)} />
+                                </div>
+                                <div className='receipt__item-info'>
+                                  <div className='receipt__item-info--bel'>Калории: {Math.floor((item.cal * foodInput) / 100)}</div>
+                                  <div className='receipt__item-info--bel'>Белки: {Math.floor((item.bel * foodInput) / 100)}</div>
+                                  <div className='receipt__item-info--bel'>Жиры: {Math.floor((item.fat * foodInput) / 100)}</div>
+                                  <div className='receipt__item-info--bel'>Углеводы: {Math.floor((item.sug * foodInput) / 100)}</div>
 
-                      <div className='receipt__item-input'>
-                        <div className='receipt__item-input--text'>Введите количество грамм:</div>
-                        <input type='number' value={foodInput} onChange={foodInputHandler} />
-                        <div>г</div>
-                      </div>
+                                  <div className='receipt__item-input'>
+                                    <div className='receipt__item-input--text'>Введите количество грамм:</div>
+                                    <input type='number' value={foodInput} onChange={foodInputHandler} />
+                                    <div>г</div>
+                                  </div>
 
-                      <div className='receipt__item--added'>Продукт успешно добавлен!</div>
-                    </div>
-                  </div>
-                )
-              })}
+                                  <div className='receipt__item--added'>Продукт успешно добавлен!</div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </>
+                      ) : (
+                        <div className='search--error'>Ничего не найдено</div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {products.map((item, index) => {
+                        return (
+                          <div className='receipt__item' key={index} onClick={(e) => showFoodInfo(e.currentTarget)}>
+                            <div className='receipt__item-group'>
+                              <div className='receipt__item-name'>{item.name}</div>
+                              <img src={foodAdd} alt='' onClick={(e) => addFood(e.currentTarget.parentNode.parentNode, item)} />
+                            </div>
+                            <div className='receipt__item-info'>
+                              <div className='receipt__item-info--bel'>Калории: {Math.floor((item.cal * foodInput) / 100)}</div>
+                              <div className='receipt__item-info--bel'>Белки: {Math.floor((item.bel * foodInput) / 100)}</div>
+                              <div className='receipt__item-info--bel'>Жиры: {Math.floor((item.fat * foodInput) / 100)}</div>
+                              <div className='receipt__item-info--bel'>Углеводы: {Math.floor((item.sug * foodInput) / 100)}</div>
+
+                              <div className='receipt__item-input'>
+                                <div className='receipt__item-input--text'>Введите количество грамм:</div>
+                                <input type='number' value={foodInput} onChange={foodInputHandler} />
+                                <div>г</div>
+                              </div>
+
+                              <div className='receipt__item--added'>Продукт успешно добавлен!</div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </>
+                  )}
+                </>
+              )}
+
+              {currentReceiptActive === 2 && (
+                <>
+                  {isSearch ? (
+                    <>
+                      {filteredReadyMeals.length > 0 ? (
+                        <>
+                          {filteredReadyMeals.map((item, index) => {
+                            return (
+                              <div className='receipt__item' key={index} onClick={(e) => showFoodInfo(e.currentTarget)}>
+                                <div className='receipt__item-group'>
+                                  <div className='receipt__item-name'>{item.name}</div>
+                                  <img src={foodAdd} alt='' onClick={(e) => addFood(e.currentTarget.parentNode.parentNode, item)} />
+                                </div>
+                                <div className='receipt__item-info'>
+                                  <div className='receipt__item-info--bel'>Калории: {Math.floor((item.cal * foodInput) / 100)}</div>
+                                  <div className='receipt__item-info--bel'>Белки: {Math.floor((item.bel * foodInput) / 100)}</div>
+                                  <div className='receipt__item-info--bel'>Жиры: {Math.floor((item.fat * foodInput) / 100)}</div>
+                                  <div className='receipt__item-info--bel'>Углеводы: {Math.floor((item.sug * foodInput) / 100)}</div>
+
+                                  <div className='receipt__item-input'>
+                                    <div className='receipt__item-input--text'>Введите количество грамм:</div>
+                                    <input type='number' value={foodInput} onChange={foodInputHandler} />
+                                    <div>г</div>
+                                  </div>
+
+                                  <div className='receipt__item--added'>Продукт успешно добавлен!</div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </>
+                      ) : (
+                        <div className='search--error'>Ничего не найдено</div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {readyMeals.map((item, index) => {
+                        return (
+                          <div className='receipt__item' key={index} onClick={(e) => showFoodInfo(e.currentTarget)}>
+                            <div className='receipt__item-group'>
+                              <div className='receipt__item-name'>{item.name}</div>
+                              <img src={foodAdd} alt='' onClick={(e) => addFood(e.currentTarget.parentNode.parentNode, item)} />
+                            </div>
+                            <div className='receipt__item-info'>
+                              <div className='receipt__item-info--bel'>Калории: {Math.floor((item.cal * foodInput) / 100)}</div>
+                              <div className='receipt__item-info--bel'>Белки: {Math.floor((item.bel * foodInput) / 100)}</div>
+                              <div className='receipt__item-info--bel'>Жиры: {Math.floor((item.fat * foodInput) / 100)}</div>
+                              <div className='receipt__item-info--bel'>Углеводы: {Math.floor((item.sug * foodInput) / 100)}</div>
+
+                              <div className='receipt__item-input'>
+                                <div className='receipt__item-input--text'>Введите количество грамм:</div>
+                                <input type='number' value={foodInput} onChange={foodInputHandler} />
+                                <div>г</div>
+                              </div>
+
+                              <div className='receipt__item--added'>Продукт успешно добавлен!</div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </>
+                  )}
+                </>
+              )}
 
               <div style={{ height: '80px' }}></div>
             </div>
