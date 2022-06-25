@@ -271,6 +271,8 @@ export const FoodPage = () => {
               onClick={() => {
                 setIsReceipt(false)
                 document.querySelector('.header__title').innerHTML = 'Питание'
+                setIsReady(false)
+                checkCalc()
               }}
             />
             <div className='container'>
