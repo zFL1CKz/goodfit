@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
+import { Modal } from '../modals/modal'
 import './FiveWeeks.css'
 
 export const From0To100 = () => {
-  const [isBlock, setIsBlock] = useState(false)
+  const [modalActive, setModalActive] = useState(false)
+
   const [currentDay, setCurrentDay] = useState(JSON.parse(localStorage.getItem('training')).day)
   const [currentWeek, setCurrentWeek] = useState(JSON.parse(localStorage.getItem('training')).week)
   const titleInfo = document.querySelector('.header__title').innerHTML
@@ -494,12 +496,46 @@ export const From0To100 = () => {
         <button
           className='training__btn--fiveweeks'
           onClick={() => {
-            localStorage.removeItem('training')
-            window.location.reload()
+            setModalActive(true)
           }}>
           Завершить программу
         </button>
       )}
+
+      <Modal active={modalActive} setActive={setModalActive}>
+        <div className='training-modal__title'>Вы успешно прошли марафон тренировок!</div>
+        <div className='training-modal__content'>{`Поздравляем! Вы прошли марафон "${document.querySelector('.header__title').innerHTML}". Теперь Вы можете  повторить его или начать другой.`}</div>
+
+        <button
+          className='modal__btn'
+          style={{ marginBottom: '10px' }}
+          onClick={() => {
+            setModalActive(false)
+            setCurrentDay(1)
+            setWeekActive(1)
+            localStorage.removeItem('training')
+            localStorage.setItem(
+              'training',
+              JSON.stringify({
+                name: titleInfo,
+                week: currentWeek,
+                maxDays: 28,
+                day: 1,
+              })
+            )
+          }}>
+          Начать заново
+        </button>
+        <button
+          className='modal__btn'
+          onClick={() => {
+            setModalActive(false)
+            localStorage.removeItem('training')
+            window.location.reload()
+          }}>
+          Другие тренировки
+        </button>
+      </Modal>
     </>
   )
 }

@@ -574,6 +574,10 @@ export const FoodPage = () => {
                   </div>
                 </div>
               </div>
+
+              <button className='modal__btn' onClick={() => setModalActive(false)}>
+                Закрыть
+              </button>
             </Modal>
           </div>
         )

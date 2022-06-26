@@ -7,11 +7,13 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import back from '../../img/back.svg'
 
 import './FiveWeeks.css'
+import { Modal } from '../modals/modal'
 
 export const VoinSparti = () => {
-  const [isBlock, setIsBlock] = useState(false)
+  const [modalActive, setModalActive] = useState(false)
+
+  const [stepOfTimer, setStepOfTimer] = useState(1)
   const [isTimer, setIsTimer] = useState(false)
-  const [timerText, setTimerText] = useState('Старт')
   const [currentApproach, setCurrentApproach] = useState(1)
   const [isTraining, setIsTraining] = useState(false)
   const [currentTraining, setCurrentTraining] = useState('')
@@ -48,9 +50,8 @@ export const VoinSparti = () => {
   }
 
   const renderTime = ({ remainingTime }) => {
-    if (remainingTime === 120 || remainingTime === 0) {
-      return <div className='timer__text'>Старт</div>
-    }
+    if (stepOfTimer === 1) return <div className='timer__text'>Старт</div>
+    if (stepOfTimer === 2 && !isTimer) return <div className='timer__text'>Стоп</div>
     return <div className='timer__text'>{remainingTime}</div>
   }
 
@@ -328,7 +329,12 @@ export const VoinSparti = () => {
             left: '50px',
             zIndex: '2',
           }}
-          onClick={() => setIsTraining(false)}
+          onClick={() => {
+            setCurrentApproach(1)
+            setIsTraining(false)
+            setIsTimer(false)
+            setStepOfTimer(1)
+          }}
         />
         <iframe
           width='100%'
@@ -343,22 +349,27 @@ export const VoinSparti = () => {
         <div
           className='voin__timer'
           onClick={() => {
-            setIsTimer(true)
-            setTimerText(120)
+            if (stepOfTimer !== 2) setStepOfTimer(stepOfTimer + 1)
+            else setIsTimer(true)
           }}>
-          <CountdownCircleTimer
-            size={274}
-            trailColor={'transparent'}
-            strokeWidth={10}
-            isPlaying={isTimer}
-            duration={120}
-            colors={['#fff', '#fff', '#fff', '#fff']}
-            onComplete={() => {
-              setIsTimer(false)
-              setCurrentApproach(currentApproach + 1)
-            }}>
-            {renderTime}
-          </CountdownCircleTimer>
+          <div className='voin__timer-group'>
+            <div className='voin__timer-circle'></div>
+            <CountdownCircleTimer
+              size={274}
+              trailColor={'transparent'}
+              strokeWidth={10}
+              isPlaying={isTimer}
+              duration={120}
+              colors={['#fff', '#fff', '#fff', '#fff']}
+              onComplete={() => {
+                setIsTimer(false)
+                setStepOfTimer(1)
+                setCurrentApproach(currentApproach + 1)
+                document.querySelectorAll('.voin__timer-group svg path')[1].style.strokeDashoffset = '0'
+              }}>
+              {renderTime}
+            </CountdownCircleTimer>
+          </div>
         </div>
       </>
     )
@@ -680,12 +691,46 @@ export const VoinSparti = () => {
           <button
             className='training__btn--fiveweeks'
             onClick={() => {
-              localStorage.removeItem('training')
-              window.location.reload()
+              setModalActive(true)
             }}>
             Завершить программу
           </button>
         )}
+
+        <Modal active={modalActive} setActive={setModalActive}>
+          <div className='training-modal__title'>Вы успешно прошли марафон тренировок!</div>
+          <div className='training-modal__content'>{`Поздравляем! Вы прошли марафон "${document.querySelector('.header__title').innerHTML}". Теперь Вы можете  повторить его или начать другой.`}</div>
+
+          <button
+            className='modal__btn'
+            style={{ marginBottom: '10px' }}
+            onClick={() => {
+              setModalActive(false)
+              setCurrentDay(1)
+              setWeekActive(1)
+              localStorage.removeItem('training')
+              localStorage.setItem(
+                'training',
+                JSON.stringify({
+                  name: titleInfo,
+                  week: currentWeek,
+                  maxDays: 28,
+                  day: 1,
+                })
+              )
+            }}>
+            Начать заново
+          </button>
+          <button
+            className='modal__btn'
+            onClick={() => {
+              setModalActive(false)
+              localStorage.removeItem('training')
+              window.location.reload()
+            }}>
+            Другие тренировки
+          </button>
+        </Modal>
       </>
     )
   }

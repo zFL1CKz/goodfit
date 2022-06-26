@@ -56,7 +56,16 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
               </>
             )}
           </div>
-          {trainingInfo !== null && <div className='training-info__info'>{trainingInfo}</div>}
+          {trainingInfo !== null && (
+            <div className='training-info__info'>
+              ВСТРEЧAЙTЕ ПРОГРАMМУ «BОИН СПAРTЫ 2.0» <br />
+              Сoбрaв вoeдинo вcе знания и опыт была создaна прогpaмма «Вoин Cпapты 2.0»! Haбор «обopудoвания» оcтaлcя пpeжним, толькo Ты и Пoл, но тeпepь в игру вcтупает отягощeние в видe pюкзака!
+              Нoвые упpaжнения, мощные cеты, дни пoд назвaниeм «ВЗPЫB» когда ты почувствуешь что такое работать со взрывной силой, продуманная последовательность упражнений и использования отягощения,
+              чтобы заставить твои мышцы идти до предела и дальше! <br />
+              Инструкция, техника и советы по выполнению упражнения, ВСЕ, В ВИДЕО ФОРМАТЕ <br />
+              Подробное видео к каждому упражнению с техникой и советами!
+            </div>
+          )}
           <button
             className='training-info__btn'
             onClick={() => {
@@ -69,6 +78,7 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
             }}>
             Старт
           </button>
+          <div style={{ height: '60px' }}></div>
         </div>
       </>
     )
