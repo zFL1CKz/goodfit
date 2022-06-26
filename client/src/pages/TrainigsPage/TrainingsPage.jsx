@@ -92,12 +92,30 @@ export const TrainingPage = () => {
                 <img src={biceps} alt='' />
               </div>
             </div>
-            <div className='training--focus'>Я горилла</div>
+            <div className='training--info'>
+              ВСТРEЧAЙTЕ ПРОГРАMМУ «BОИН СПAРTЫ 2.0» Сoбрaв вoeдинo вcе знания и опыт была создaна прогpaмма «Вoин Cпapты 2.0»! Haбор «обopудoвания» оcтaлcя пpeжним, толькo Ты и Пoл, но тeпepь в игру
+              вcтупает отягощeние в видe pюкзака! Нoвые упpaжнения, мощные cеты, дни пoд назвaниeм «ВЗPЫB» когда ты почувствуешь что такое работать со взрывной силой, продуманная последовательность
+              упражнений и использования отягощения, чтобы заставить твои мышцы идти до предела и дальше! Инструкция, техника и советы по выполнению упражнения, ВСЕ, В ВИДЕО ФОРМАТЕ Подробное видео к
+              каждому упражнению с техникой и советами!
+            </div>
             <img src={img3} alt='' className='training--bg' />
             <img src={tap} alt='' className='training--tap' />
           </div>
 
-          <div style={{display: 'block', height: '100px'}}></div>
+          {localStorage.getItem('training') !== null && (
+            <div className='container'>
+              <button
+                className='training__remove'
+                onClick={(e) => {
+                  e.currentTarget.style.display = 'none'
+                  localStorage.removeItem('training')
+                }}>
+                Сбросить тренировку
+              </button>
+            </div>
+          )}
+
+          <div style={{ display: 'block', height: '100px' }}></div>
         </>
       ) : (
         <TrainingInfo item={info} setInfo={setInfo} started={start} />

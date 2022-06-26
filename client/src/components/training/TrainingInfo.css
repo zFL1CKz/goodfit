@@ -45,6 +45,11 @@
   color: #0377a6;
   background: transparent;
 }
-.training--bg{
+.training--bg {
   margin-bottom: 40px;
+}
+.training-info__info {
+  font-family: inherit;
+  color: #949397;
+  font-size: 16px;
 }

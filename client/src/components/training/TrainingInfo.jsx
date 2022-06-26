@@ -6,12 +6,14 @@ import { VoinSparti } from './VoinSparti'
 import './TrainingInfo.css'
 
 export const TrainingInfo = ({ item, setInfo, started }) => {
-  const focusInfo = item.querySelector('.training--focus').innerHTML.split(', ')
+  const focusInfo = item.querySelector('.training--focus')?.innerHTML.split(', ') || null
+  const trainingInfo = item.querySelector('.training--info')?.innerHTML || null
   const titleInfo = item.querySelector('.training-item__title').innerHTML
   const [start, setStart] = useState(started)
 
   document.querySelector('.header__title').innerHTML = titleInfo
-  item.querySelector('.training--focus').classList.add('show')
+  item.querySelector('.training--focus')?.classList.add('show')
+  item.querySelector('.training--info')?.classList.add('show')
 
   function checkTrainingName() {
     if (JSON.parse(localStorage.getItem('training')).name === '5 недель к эстетике') return <FiveWeeks />
@@ -29,6 +31,7 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
             position: 'absolute',
             top: '50px',
             left: '50px',
+            zIndex: '2',
           }}
           onClick={() => {
             document.querySelector('.header__title').innerHTML = 'Тренировки'
@@ -41,14 +44,19 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
         <div className='container'>
           <div className='training-info__title'>О программе</div>
           <div className='training-info__focus'>
-            <span>Фокус:</span>
-            <br />
-            <ul>
-              {focusInfo.map((el, index) => (
-                <li key={index}>{el}</li>
-              ))}
-            </ul>
+            {focusInfo !== null && (
+              <>
+                <span>Фокус:</span>
+                <br />
+                <ul>
+                  {focusInfo.map((el, index) => (
+                    <li key={index}>{el}</li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
+          {trainingInfo !== null && <div className='training-info__info'>{trainingInfo}</div>}
           <button
             className='training-info__btn'
             onClick={() => {
@@ -74,6 +82,7 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
             position: 'absolute',
             top: '50px',
             left: '50px',
+            zIndex: '2',
           }}
           onClick={() => {
             document.querySelector('.header__title').innerHTML = 'Тренировки'
@@ -83,7 +92,6 @@ export const TrainingInfo = ({ item, setInfo, started }) => {
         />
 
         {checkTrainingName()}
-
       </>
     )
   }

@@ -135,3 +135,65 @@ iframe:last-of-type {
   font-size: 24px;
   color: #0377a6;
 }
+.voin__wrapper {
+  position: relative;
+}
+.voin__wrapper img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  filter: brightness(65%);
+}
+.voin__wrapper .voin__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  filter: brightness(100%);
+}
+.voin__text {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.voin__approach {
+  font-family: inherit;
+  border: 1px solid #0377a6;
+  border-radius: 15px;
+  color: #0377a6;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 20px 0;
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.voin__timer {
+  width: 100%;
+  height: 50vh;
+  background: url('../../img/training-bg.png') top no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+.voin__timer svg {
+  transform: rotate(-90deg);
+}
+.timer__text {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 64px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+}
