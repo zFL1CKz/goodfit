@@ -1,5 +1,5 @@
 {
   "PORT": 5000,
-  "mongoUri": "mongodb://user_name:user_password@cluster0-shard-00-00.vnkmy.mongodb.net:27017,cluster0-shard-00-01.vnkmy.mongodb.net:27017,cluster0-shard-00-02.vnkmy.mongodb.net:27017/goodfit?ssl=true&replicaSet=atlas-irdiqy-shard-0&authSource=admin&retryWrites=true&w=majority",
-  "jwtSecret": ""
+  "mongoUri": "mongodb://Maxim:Alo12345@cluster0-shard-00-00.vnkmy.mongodb.net:27017,cluster0-shard-00-01.vnkmy.mongodb.net:27017,cluster0-shard-00-02.vnkmy.mongodb.net:27017/goodfit?ssl=true&replicaSet=atlas-irdiqy-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "jwtSecret": "jwt secret key zfl1ckz"
 }
